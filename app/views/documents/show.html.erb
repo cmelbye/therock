@@ -1,15 +1,11 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @document.name %>
-</p>
+<label class="label"><%= t("activerecord.attributes.document.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</label>
+<p><%= @document.name %></p>
 
-<p>
-  <b>Body:</b>
-  <%= @document.body %>
-</p>
-
-
-<%= link_to 'Edit', edit_document_path(@document) %> |
-<%= link_to 'Back', documents_path %>
+<label class="label"><%= t("activerecord.attributes.document.body", :default => t("activerecord.labels.body", :default => "Body")) %>:</label>
+<p><%= @document.body %></p>
+<div class="actions">
+<%= link_to "Back", documents_path, :class => 'btn primary'  %>
+<%= link_to "Edit", edit_document_path(@document), :class => 'btn primary' %>
+<%= link_to "Delete", document_path(@document), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn primary' %>
+</div>

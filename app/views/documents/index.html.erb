@@ -1,25 +1,30 @@
-<h1>Listing documents</h1>
-
-<table>
+<h1>Documents</h1>
+<table class="zebra-striped">
+ <thead>
   <tr>
-    <th>Name</th>
-    <th>Body</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>ID</th>
+        <th>
+      <%= t("activerecord.attributes.document.name", :default => t("activerecord.labels.name", :default => "Name")) %>
+    </th>
+        <th>Created at</th>
+    <th>Actions</th>
   </tr>
-
-<% @documents.each do |document| %>
-  <tr>
-    <td><%= document.name %></td>
-    <td><%= document.body %></td>
-    <td><%= link_to 'Show', document %></td>
-    <td><%= link_to 'Edit', edit_document_path(document) %></td>
-    <td><%= link_to 'Destroy', document, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+  </thead>
+  <tbody>
+  <% @documents.each do |document| -%>
+   <tr>
+    <td><%= document.id %></td>
+        <td><%= link_to document.name, document_path(document) %>
+    </td>
+        <td><%= document.created_at %></td>
+    <td>
+      <%= link_to "Show", document_path(document) %>
+      <%= link_to "Edit", edit_document_path(document) %>
+      <%= link_to "Destroy", document_path(document), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+    </td>
+    </tr>
+    <% end -%>
+   </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Document', new_document_path %>
+<%= link_to "New", new_document_path, :class => 'btn primary' %>

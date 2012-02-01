@@ -1,6 +1,4 @@
-<h1>Editing document</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @document %> |
-<%= link_to 'Back', documents_path %>
+<%= form_for @document, :url => document_path(@document), :html => { :class => "edit_document", :id => "edit_document" } do |f| -%>
+  <input name="_method" type="hidden" value="put" />
+  <%= render :partial => "form", :locals => {:f => f} %>
+<% end -%>
