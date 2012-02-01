@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @section.name %>
+</p>
+
+<p>
+  <b>Color:</b>
+  <%= @section.color %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_section_path(@section) %> |
+<%= link_to 'Back', admin_sections_path %>
