@@ -1,11 +1,87 @@
+<div class="page-header"><h1>Edit Document</h1></div>
 
-<label class="label"><%= t("activerecord.attributes.document.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</label>
-<p><%= @document.name %></p>
+<h2 class="document_name" id="document_name"><%= @document.name %></h2>
 
-<label class="label"><%= t("activerecord.attributes.document.body", :default => t("activerecord.labels.body", :default => "Body")) %>:</label>
-<p><%= @document.body %></p>
-<div class="actions">
-<%= link_to "Back", documents_path, :class => 'btn primary'  %>
-<%= link_to "Edit", edit_document_path(@document), :class => 'btn primary' %>
-<%= link_to "Delete", document_path(@document), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn primary' %>
+<%= form_for @document do |f| %>
+<div class="tabbable">
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#edit_document" data-toggle="tab">Edit</a></li>
+		<li><a href="#preview_document" data-toggle="tab">Preview</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane active" id="edit_document">
+			<div class="wmd-panel">
+				<div id="wmd-button-bar"></div>
+				<%= f.text_area :body, :id => "wmd-input" %>
+			</div>
+		</div>
+		<div class="tab-pane" id="preview_document">
+			<div id="wmd-preview" class="wmd-panel wmd-preview"></div>
+		</div>
+	</div>
+
+	<div class="form-actions">
+		<button type="submit" class="btn btn-primary">Save Document</button>
+		<%= link_to "Cancel", documents_path, :class => "btn", :confirm => "Are you sure? Your changes will not be saved." %>
+	</div>
 </div>
+<% end %>
+
+<div class="modal fade" id="renameModal">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>Rename Document</h3>
+	</div>
+	<div class="modal-body">
+		<%= form_for @document do |f| -%>
+		<div class="control-group">
+			<%= f.label :name, :class => "control-label" %>
+			<div class="controls">
+				<%= f.text_field :name, :class => "input-xlarge" %>
+				<p class="help-block">Please provide a descriptive name so others know what your document is.</p>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-primary">Rename</button>
+		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+		<% end %>
+	</div>
+</div>
+
+<style>
+h2.document_name {
+	margin-bottom: 10px;
+}
+
+h2.document_name:hover {
+	background-color: lightYellow;
+	cursor: pointer;
+}
+
+textarea {
+	width: 600px;
+	height: 200px;
+}
+
+.modal {
+	display: none;
+}
+</style>
+
+<% content_for :js do %>
+<script>
+$(function() {
+	var converter = Markdown.getSanitizingConverter();
+	var editor = new Markdown.Editor(converter);
+	editor.run();
+
+	$("#renameModal").modal('hide');
+
+	$("#document_name").click(function() {
+		$("#renameModal").modal('show');
+	});
+});
+</script>
+<% end %>

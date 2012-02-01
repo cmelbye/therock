@@ -1,11 +1,11 @@
 <div class="page-header">
-  <h1>My Documents</h1>
+  <h1>All Documents</h1>
 </div>
 
 <% if @documents.size > 0 %>
   <%= render :partial => "table", :locals => { :documents => @documents } %> 
 <% else %>
   <div class="missing-data">
-    <h1>You haven't created any documents yet.</h1>
+    <h1>No one has created any documents yet.</h1>
   </div>
 <% end %>

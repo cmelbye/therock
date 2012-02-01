@@ -1,18 +1,12 @@
-
-<div class="clearfix">
-   <%= f.label :name, t("activerecord.attributes.document.name", :default => "Name"), :class => :label %>
-  <div class="input">
-    <%= f.text_field :name, :class => 'text_field' %>
+<div class="control-group">
+  <%= f.label :name, :class => "control-label" %>
+  <div class="controls">
+    <%= f.text_field :name, :class => "input-xlarge" %>
+    <p class="help-block">Please provide a descriptive name so others know what your document is.</p>
   </div>
 </div>
 
-<div class="clearfix">
-   <%= f.label :body, t("activerecord.attributes.document.body", :default => "Body"), :class => :label %>
-  <div class="input">
-    <%= f.text_area :body, :class => 'text_area' %>
-  </div>
-</div>
-<div class="actions">
-  <button class="btn primary" type="submit">Save</button> or
-	<%= link_to "Cancel", documents_path %>
+<div class="form-actions">
+  <button class="btn btn-primary" type="submit">Save Document</button>
+	<%= link_to "Cancel", documents_path, :class => "btn" %>
 </div>

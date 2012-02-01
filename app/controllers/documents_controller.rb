@@ -1,4 +1,6 @@
 class DocumentsController < ApplicationController
+  layout "documents"
+
   # GET /documents
   # GET /documents.json
   def index
@@ -8,6 +10,10 @@ class DocumentsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @documents }
     end
+  end
+
+  def all
+    @documents = Document.all
   end
 
   # GET /documents/1
@@ -44,7 +50,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
+        format.html { redirect_to @document, notice: '<strong>Awesome!</strong> The document was successfully created.' }
         format.json { render json: @document, status: :created, location: @document }
       else
         format.html { render action: "new" }
@@ -60,7 +66,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.update_attributes(params[:document])
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
+        format.html { redirect_to @document, notice: '<strong>Success!</strong> The document was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

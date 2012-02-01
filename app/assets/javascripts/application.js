@@ -6,5 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
-//= require_tree .
+//= require bootstrap.min
+//= require markdown.converter
+//= require markdown.sanitizer
+//= require markdown.editor

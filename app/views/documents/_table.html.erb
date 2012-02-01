@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Last modified</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @documents.each do |document| -%>
+    <tr>
+      <td><%= link_to document.name, document_path(document) %></td>
+      <td><%= time_ago_in_words(document.updated_at) %> ago</td>
+      <td><%= document.created_at.strftime("%e %b %Y %I:%M %P") %></td>
+      <td>
+        <%= link_to "Show", document_path(document) %>
+        <%= link_to "Edit", edit_document_path(document) %>
+        <%= link_to "Destroy", document_path(document), :method => :delete, :confirm => "Are you sure?" %>
+      </td>
+    </tr>
+    <% end -%>
+  </tbody>
+</table>

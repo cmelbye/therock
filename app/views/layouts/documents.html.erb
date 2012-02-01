@@ -1,0 +1,20 @@
+<% content_for :content do %>
+<div class="row">
+	<div class="span2">
+		<div class="well" style="padding: 8px 0;">
+			<ul class="nav nav-list">
+				<%= nav_item("New Document", new_document_path, :icon => "icon-plus") %>
+				<li class="nav-header">Filters</li>
+				<%= nav_item("My Documents", documents_path, :icon => "icon-folder-open") %>
+				<%= nav_item("All Documents", all_documents_path, :icon => "icon-list") %>
+			</ul>
+		</div>
+	</div>
+	<div class="span10">
+		<% if flash[:notice] %><div class="alert alert-success"><%= flash[:notice].html_safe %></div><% end %>
+		<%= yield %>
+	</div>
+</div>
+<% end %>
+
+<%= render :template => "layouts/application" %>
