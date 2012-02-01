@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
 
 	protected
 	def current_user
-		@user ||= User.find(session[:id])
+		if session[:user_id]
+			@user = User.find(session[:user_id])
+		else
+			@user = nil
+		end
 	end
 
 	def logged_in?
