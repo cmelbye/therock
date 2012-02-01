@@ -1,4 +1,4 @@
-class DocumentsController < ApplicationController
+class Admin::DocumentsController < ApplicationController
   layout "documents"
 
   # GET /documents
@@ -50,7 +50,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: '<strong>Awesome!</strong> The document was successfully created.' }
+        format.html { redirect_to [:admin, @document], notice: '<strong>Awesome!</strong> The document was successfully created.' }
         format.json { render json: @document, status: :created, location: @document }
       else
         format.html { render action: "new" }
@@ -66,7 +66,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.update_attributes(params[:document])
-        format.html { redirect_to @document, notice: '<strong>Success!</strong> The document was successfully updated.' }
+        format.html { redirect_to [:admin, @document], notice: '<strong>Success!</strong> The document was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -82,7 +82,7 @@ class DocumentsController < ApplicationController
     @document.destroy
 
     respond_to do |format|
-      format.html { redirect_to documents_url }
+      format.html { redirect_to admin_documents_url }
       format.json { head :ok }
     end
   end

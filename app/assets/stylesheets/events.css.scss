@@ -1,0 +1,23 @@
+table.table-calendar {
+	th {
+		text-align: center
+	}
+	tr td:first-of-type, tr td:last-of-type {
+		background-color: #f0f0f0;
+	}
+	td {
+		text-align: right;
+		font-weight: bold;
+		font-size: 90%;
+		width: 14%;
+		height: 120px;
+		border-left: 1px solid #DDD;
+		&:last-of-type {
+			border-right: 1px solid #DDD;
+		}
+		&.active {
+			background-color: lightYellow;
+		}
+	}
+	border-bottom: 1px solid #DDD;
+}

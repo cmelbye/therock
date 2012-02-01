@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table table-striped table-bordered">
   <thead>
     <tr>
       <th>Name</th>
@@ -10,13 +10,13 @@
   <tbody>
     <% @documents.each do |document| -%>
     <tr>
-      <td><%= link_to document.name, document_path(document) %></td>
+      <td><%= link_to document.name, admin_document_path(document) %></td>
       <td><%= time_ago_in_words(document.updated_at) %> ago</td>
       <td><%= document.created_at.strftime("%e %b %Y %I:%M %P") %></td>
       <td>
-        <%= link_to "Show", document_path(document) %>
-        <%= link_to "Edit", edit_document_path(document) %>
-        <%= link_to "Destroy", document_path(document), :method => :delete, :confirm => "Are you sure?" %>
+        <%= link_to "Show", admin_document_path(document) %>
+        <%= link_to "Edit", edit_admin_document_path(document) %>
+        <%= link_to "Destroy", admin_document_path(document), :method => :delete, :confirm => "Are you sure?" %>
       </td>
     </tr>
     <% end -%>

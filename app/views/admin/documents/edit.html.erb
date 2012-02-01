@@ -1,0 +1,4 @@
+<%= form_for @document, :html => { :class => "edit_document", :id => "edit_document" } do |f| -%>
+  <input name="_method" type="hidden" value="put" />
+  <%= render :partial => "form", :locals => {:f => f} %>
+<% end -%>

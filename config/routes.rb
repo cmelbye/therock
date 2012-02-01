@@ -1,10 +1,14 @@
 Focus::Application.routes.draw do
-  resources :documents do
-    collection do
-      get :all
+  match '/admin' => 'admin#index', :as => :admin
+
+  namespace :admin do
+    resources :documents do
+      collection do
+        get :all
+      end
     end
   end
-
+  
 	match '/auth/:provider/callback' => 'sessions#create'
 
   # The priority is based upon order of creation:

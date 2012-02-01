@@ -2,7 +2,7 @@
 
 <h2 class="document_name" id="document_name"><%= @document.name %></h2>
 
-<%= form_for @document do |f| %>
+<%= form_for [:admin, @document] do |f| %>
 <div class="tabbable">
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#edit_document" data-toggle="tab">Edit</a></li>
@@ -23,7 +23,7 @@
 
 	<div class="form-actions">
 		<button type="submit" class="btn btn-primary">Save Document</button>
-		<%= link_to "Cancel", documents_path, :class => "btn", :confirm => "Are you sure? Your changes will not be saved." %>
+		<%= link_to "Cancel", admin_documents_path, :class => "btn", :confirm => "Are you sure? Your changes will not be saved." %>
 	</div>
 </div>
 <% end %>
@@ -34,7 +34,7 @@
 		<h3>Rename Document</h3>
 	</div>
 	<div class="modal-body">
-		<%= form_for @document do |f| -%>
+		<%= form_for [:admin, @document] do |f| -%>
 		<div class="control-group">
 			<%= f.label :name, :class => "control-label" %>
 			<div class="controls">
