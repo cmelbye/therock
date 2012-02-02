@@ -1,0 +1,24 @@
+<div class="page-header">
+	<h1>Edit your profile</h1>
+</div>
+
+<%= form_for [:admin, @user] do |f| -%>
+	<div class="control-group">
+	  <%= f.label :first_name, "First name", :class => "control-label" %>
+	  <div class="controls">
+	    <%= f.text_field :first_name, :class => "input-xlarge" %>
+	  </div>
+	</div>
+
+	<div class="control-group">
+	  <%= f.label :last_name, "Last name", :class => "control-label" %>
+	  <div class="controls">
+	    <%= f.text_field :last_name, :class => "input-xlarge" %>
+	  </div>
+	</div>
+
+	<div class="form-actions">
+	  <button class="btn btn-primary" type="submit">Save Document</button>
+		<%= link_to "Cancel", admin_users_path, :class => "btn" %>
+	</div>
+<% end %>

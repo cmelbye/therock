@@ -2,6 +2,7 @@
 <h3>People</h3>
 <ul class="nav nav-list">
 	<%= nav_item("Directory", admin_users_path, :icon => "icon-user") %>
+	<%= nav_item("Edit your profile", edit_admin_user_path(current_user), :icon => "icon-pencil") %>
 </ul>
 <% end %>
 
