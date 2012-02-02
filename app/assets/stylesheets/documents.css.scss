@@ -1,3 +1,95 @@
 // Place all the styles related to the documents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h2.document-name {
+}
+
+h2.document-name:hover {
+	background-color: lightYellow;
+	cursor: pointer;
+}
+
+h3.document-info {
+	font-weight: normal;
+}
+
+h3.last {
+	margin-bottom: 20px;
+}
+
+.tab-pane {
+	display: none;
+}
+
+.tab-pane.active {
+	display: block;
+}
+
+.expandingArea {
+	width: 600px;
+	background-color: #666;
+	border-left: 1px solid #999;
+	border-right: 1px solid #999;
+	margin-left: 20px;
+	min-height: 250px;
+}
+
+.expandingArea > pre,
+.expandingArea > textarea {
+	width: 600px;
+	font-family: 'Inconsolata', monospace;
+	border: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	color: #fff;
+	font-size: 12pt;
+}
+
+.wmd-textarea-wrapper {
+	background-color: #555;
+}
+
+.expandingArea > textarea:focus {
+	border: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+.wmd-panel {
+}
+
+.wmd-preview-wrapper {
+	background-color: #f8f8f8;
+	padding-left: 20px;
+}
+
+.wmd-preview {
+	padding: 10px 3px;
+	width: 600px;
+}
+
+form.edit_document .form-actions {
+	margin-top: 0;
+	border-bottom: 1px solid #ddd;
+}
+
+.wmd-button-bar-wrapper {
+	background-color: whiteSmoke;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #DDD;
+	padding-top: 1px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+#wmd-button-bar {
+	width: 600px;
+}
+#wmd-button-bar .btn-toolbar {
+	margin: 7px 0 4px 0;
+}
+#wmd-button-bar .pull-right .btn-toolbar {
+	margin: 0;
+}

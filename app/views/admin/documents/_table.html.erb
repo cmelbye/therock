@@ -10,7 +10,7 @@
   <tbody>
     <% @documents.each do |document| -%>
     <tr>
-      <td><%= link_to document.name, admin_document_path(document) %></td>
+      <td><%= link_to document.name, edit_admin_document_path(document) %></td>
       <td><%= time_ago_in_words(document.updated_at) %> ago</td>
       <td><%= document.created_at.strftime("%e %b %Y %I:%M %P") %></td>
       <td>

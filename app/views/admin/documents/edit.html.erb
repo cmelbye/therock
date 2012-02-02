@@ -1,8 +1,7 @@
 <div class="page-header"><h1>Edit Document</h1></div>
 
-<h2 class="document_name" id="document_name"><%= @document.name %></h2>
-<h3 class="last-edited">Last edited <strong><%= time_ago_in_words(@document.updated_at) %> ago</strong> by <strong>Charlie Melbye</strong></h3>
-<h3 class="last-edited last"><a href="#">View document information &raquo;</a></h3>
+<h2 class="document-name" id="document_name"><%= @document.name %></h2>
+<h3 class="document-info last"><%= link_to "View document information &raquo;".html_safe, [:admin, @document] %></h3>
 
 <%= form_for [:admin, @document] do |f| %>
 	<div class="tabbable">
@@ -59,105 +58,6 @@
 		<% end %>
 	</div>
 </div>
-
-<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
-<style>
-h2.document_name {
-}
-
-h2.document_name:hover {
-	background-color: lightYellow;
-	cursor: pointer;
-}
-
-h3.last-edited {
-	font-weight: normal;
-}
-
-h3.last {
-	margin-bottom: 20px;
-}
-
-.tab-pane {
-	display: none;
-}
-
-.tab-pane.active {
-	display: block;
-}
-
-.expandingArea {
-	width: 600px;
-	background-color: #666;
-	border-left: 1px solid #999;
-	border-right: 1px solid #999;
-	margin-left: 20px;
-	min-height: 250px;
-}
-
-.expandingArea > pre,
-.expandingArea > textarea {
-	width: 600px;
-	font-family: 'Inconsolata', monospace;
-	border: none;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	color: #fff;
-	font-size: 12pt;
-}
-
-.wmd-textarea-wrapper {
-	background-color: #555;
-}
-
-.expandingArea > textarea:focus {
-	border: none;
-	box-shadow: none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-}
-
-.wmd-panel {
-}
-
-.wmd-preview-wrapper {
-	background-color: #f8f8f8;
-	padding-left: 20px;
-}
-
-.wmd-preview {
-	padding: 10px 3px;
-	width: 600px;
-}
-
-.form-actions {
-	margin-top: 0;
-	border-bottom: 1px solid #ddd;
-}
-
-.modal {
-	display: none;
-}
-
-.wmd-button-bar-wrapper {
-	background-color: whiteSmoke;
-	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #DDD;
-	padding-top: 1px;
-	padding-left: 20px;
-	padding-right: 20px;
-}
-#wmd-button-bar {
-	width: 600px;
-}
-#wmd-button-bar .btn-toolbar {
-	margin: 7px 0 4px 0;
-}
-#wmd-button-bar .pull-right .btn-toolbar {
-	margin: 0;
-}
-</style>
 
 <% content_for :js do %>
 <script>

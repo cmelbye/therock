@@ -4,6 +4,11 @@ class SessionsController < ApplicationController
 		@user = User.find_or_create_by_uid(auth_hash["uid"])
 		@user.update_attributes(:name => auth_hash["info"]["name"], :first_name => auth_hash["info"]["first_name"], :last_name => auth_hash["info"]["last_name"], :icon => auth_hash["info"]["image"], :email => auth_hash["info"]["email"], :token => auth_hash["credentials"]["token"])
 		session[:user_id] = @user.id
-		render :text => @user.id
+		redirect_to admin_path
+	end
+
+	def destroy
+		session[:user_id] = nil
+		redirect_to root_path
 	end
 end

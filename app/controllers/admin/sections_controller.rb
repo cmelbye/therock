@@ -1,4 +1,6 @@
 class Admin::SectionsController < ApplicationController
+  layout "admin"
+  
   # GET /sections
   # GET /sections.json
   def index
