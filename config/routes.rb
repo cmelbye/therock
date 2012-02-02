@@ -9,6 +9,8 @@ Focus::Application.routes.draw do
     end
 
     resources :users
+
+		resources :sections
   end
   
 	match '/auth/:provider/callback' => 'sessions#create'

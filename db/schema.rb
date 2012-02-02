@@ -11,11 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201013945) do
+ActiveRecord::Schema.define(:version => 20120201223834) do
 
   create_table "documents", :force => true do |t|
     t.string   "name"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sections", :force => true do |t|
+    t.string   "name"
+    t.string   "color"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
