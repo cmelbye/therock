@@ -1,2 +1,27 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>TheRock</h1>
+<p class="soon">Coming soon.</p>
+<p class="login"><%= link_to "Staff login &raquo;".html_safe, admin_path %></p>
+
+<style>
+body {
+	padding-top: 120px;
+}
+h1 {
+	font-size: 62pt;
+	line-height: 64pt;
+	margin-bottom: 20px;
+}
+p.soon {
+	font-size: 40pt;
+	line-height: 42pt;
+	color: gray;
+	margin-bottom: 25px;
+}
+p.login {
+	font-size: 20pt;
+	line-height: 22pt;
+}
+p.login a {
+	color: lightGray;
+}
+</style>
