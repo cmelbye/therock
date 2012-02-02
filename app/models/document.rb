@@ -1,7 +1,7 @@
 class Document < ActiveRecord::Base
 	versioned
 
-	has_many :document_contributors, :order => :id
+	has_many :document_contributors, :order => :id, :dependent => :destroy
 	has_many :contributors, :through => :document_contributors, :uniq => true, :order => 'document_contributors.id ASC', :select => '"users".*, "document_contributors".*'
 
 	def pretty_contributors
