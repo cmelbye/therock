@@ -37,27 +37,7 @@
 	</div>
 <% end %>
 
-<div class="modal fade" id="renameModal">
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal">×</a>
-		<h3>Rename Document</h3>
-	</div>
-	<div class="modal-body">
-		<%= form_for [:admin, @document] do |f| -%>
-		<div class="control-group">
-			<%= f.label :name, :class => "control-label" %>
-			<div class="controls">
-				<%= f.text_field :name, :class => "input-xlarge" %>
-				<p class="help-block">Please provide a descriptive name so others know what your document is.</p>
-			</div>
-		</div>
-	</div>
-	<div class="modal-footer">
-		<button type="submit" class="btn btn-primary">Rename</button>
-		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
-		<% end %>
-	</div>
-</div>
+<%= render :partial => "rename" %>
 
 <% content_for :js do %>
 <script>
@@ -68,7 +48,7 @@ $(function() {
 
 	$("#renameModal").modal('hide');
 
-	$("#document_name").click(function() {
+	$(".document_name").click(function() {
 		$("#renameModal").modal('show');
 	});
 
