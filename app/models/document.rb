@@ -1,7 +1,7 @@
 class Document < ActiveRecord::Base
 	versioned
 
-	has_many :document_contributors
+	has_many :document_contributors, :order => :id
 	has_many :contributors, :through => :document_contributors, :uniq => true, :order => 'document_contributors.id ASC'
 
 	def pretty_contributors
