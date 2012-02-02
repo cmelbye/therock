@@ -1,10 +1,7 @@
 <% content_for :sidebar do %>
-<h3>Documents</h3>
+<h3>People</h3>
 <ul class="nav nav-list">
-	<%= nav_item("New Document", new_admin_document_path, :icon => "icon-plus") %>
-	<li class="nav-header">Filters</li>
-	<%= nav_item("My Documents", admin_documents_path, :icon => "icon-folder-open") %>
-	<%= nav_item("All Documents", all_admin_documents_path, :icon => "icon-list") %>
+	<%= nav_item("Directory", admin_users_path, :icon => "icon-user") %>
 </ul>
 <% end %>
 

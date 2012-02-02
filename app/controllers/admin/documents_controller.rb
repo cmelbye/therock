@@ -46,11 +46,11 @@ class Admin::DocumentsController < ApplicationController
   # POST /documents
   # POST /documents.json
   def create
-    @document = Document.new(params[:document])
+    @document = Document.new(params[:document].merge({:updated_by => current_user}))
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to [:admin, @document], notice: '<strong>Awesome!</strong> The document was successfully created.' }
+        format.html { redirect_to edit_admin_document_path(@document), notice: '<strong>Awesome!</strong> The document was successfully created.' }
         format.json { render json: @document, status: :created, location: @document }
       else
         format.html { render action: "new" }
@@ -65,8 +65,8 @@ class Admin::DocumentsController < ApplicationController
     @document = Document.find(params[:id])
 
     respond_to do |format|
-      if @document.update_attributes(params[:document])
-        format.html { redirect_to [:admin, @document], notice: '<strong>Success!</strong> The document was successfully updated.' }
+      if @document.update_attributes(params[:document].merge({:updated_by => current_user}))
+        format.html { redirect_to edit_admin_document_path(@document), notice: '<strong>Success!</strong> The document was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

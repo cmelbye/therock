@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  layout "admin"
+  layout "people"
   
   def index
     @users = User.all
