@@ -1,5 +1,5 @@
 class Admin::SectionsController < ApplicationController
-  layout "admin"
+  layout "sections"
   
   # GET /sections
   # GET /sections.json

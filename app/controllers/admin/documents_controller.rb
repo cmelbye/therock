@@ -4,7 +4,7 @@ class Admin::DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.all
+    @documents = current_user.documents.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -50,6 +50,7 @@ class Admin::DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
+        @document.contributors << current_user
         format.html { redirect_to edit_admin_document_path(@document), notice: '<strong>Awesome!</strong> The document was successfully created.' }
         format.json { render json: @document, status: :created, location: @document }
       else
@@ -66,6 +67,7 @@ class Admin::DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.update_attributes(params[:document].merge({:updated_by => current_user}))
+        @document.contributors << current_user
         format.html { redirect_to edit_admin_document_path(@document), notice: '<strong>Success!</strong> The document was successfully updated.' }
         format.json { head :ok }
       else

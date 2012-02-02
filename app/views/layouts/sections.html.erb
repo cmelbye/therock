@@ -1,0 +1,17 @@
+<% content_for :sidebar do %>
+<h3>Sections</h3>
+<ul class="nav nav-list">
+	<%= nav_item("Sections", admin_sections_path, :icon => "icon-list-alt") %>
+</ul>
+<% end %>
+
+<% content_for :content do %>
+<div class="row">
+	<div class="span9 offset3">
+		<% if flash[:notice] %><div class="alert alert-success"><%= flash[:notice].html_safe %></div><% end %>
+		<%= yield %>
+	</div>
+</div>
+<% end %>
+
+<%= render :template => "layouts/admin" %>

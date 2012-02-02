@@ -1,23 +1,28 @@
 <div class="page-header"><h1>Document Information</h1></div>
 
 <h2 class="document-name" id="document_name"><%= @document.name %></h2>
+<% if @document.versions.size > 0 %>
 <h3 class="document-info">Last edited <strong><%= time_ago_in_words(@document.updated_at) %> ago</strong> by <strong><%= @document.versions.last.user.name %></strong></h3>
+<% end %>
 <h3 class="document-info last"><%= link_to "Edit document &raquo;".html_safe, edit_admin_document_path(@document) %></h3>
 
 <h4>Contributors</h4>
 
 <table class="table table-bordered" style="width: 300px;">
+	<% @document.contributors.each_with_index do |contributor, index| %>
 	<tr>
-		<td>Charlie Melbye <span class="label">Creator</span></th>
+		<td><%= contributor.name %><%= " <span class='label'>Creator</span>".html_safe if index == 0 %></td>
 	</tr>
-	<tr>
-		<td>John Doe</th>
-	</tr>
+	<% end %>
 </table>
 
 <h4>Version History</h4>
+<% if @document.versions.size > 0 %>
 <ul>
 	<% @document.versions.order("created_at DESC").all.each do |version| %>
 		<li><strong><%= version.user.name %></strong> edited this document <strong><%= time_ago_in_words(version.created_at) %> ago</strong></li>
 	<% end %>
 </ul>
+<% else %>
+<p>No edits have been made to this document yet.</p>
+<% end %>

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120201223834) do
+ActiveRecord::Schema.define(:version => 20120202053939) do
+
+  create_table "document_contributors", :force => true do |t|
+    t.integer  "document_id"
+    t.integer  "contributor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "documents", :force => true do |t|
     t.string   "name"
