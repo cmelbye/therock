@@ -45,6 +45,8 @@ module Focus
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    config.assets.precompile += ['admin.js', 'admin.css']
+
 		config.middleware.use OmniAuth::Builder do
 			provider :google_oauth2, "347166111204.apps.googleusercontent.com", "BLemE9Mqurf4ZYSM0ZKn6pBu", {access_type: 'online', approval_prompt: ''}
 		end
