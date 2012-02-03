@@ -1,3 +1,4 @@
 #!/bin/bash
+echo $SERVICE_APPROOT
 cd "$SERVICE_APPROOT"
 cp -a . ~
