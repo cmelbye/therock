@@ -1,4 +1,4 @@
-#!/usr/bin/python2.4
+#!/usr/bin/env python
 
 """MobWrite - Real-time Synchronization and Collaboration Service
 
@@ -710,7 +710,7 @@ def main():
   # Start up a thread that does timeouts and cleanup
   thread.start_new_thread(cleanup_thread, ())
 
-  port = int(os.environ('PORT_WWW', 3017))
+  port = int(mobwrite_core.CFG.get("LOCAL_PORT", 3017))
   mobwrite_core.LOG.info("Listening on port %d..." % port)
   s = SocketServer.ThreadingTCPServer(("", port), DaemonMobWrite)
   try:

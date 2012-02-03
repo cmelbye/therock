@@ -1,7 +1,5 @@
 www:
   type: ruby
 mobwrite:
-  type: custom
-  buildscript: mobwrite/builder
+  type: python
   approot: mobwrite
-  process: ~/daemon/mobwrite_daemon.py
