@@ -1,4 +1,6 @@
 #!/bin/bash
 echo $SERVICE_APPROOT
 cd "$SERVICE_APPROOT"
+ls
 cp -a . ~
+ls ~
