@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  summary: MyString
+  more_info: MyText
+  due: 2012-02-02
+  status: 1
+  assignor_id: 1
+  assignee_id: 1
+
+two:
+  summary: MyString
+  more_info: MyText
+  due: 2012-02-02
+  status: 1
+  assignor_id: 1
+  assignee_id: 1

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120202053939) do
+ActiveRecord::Schema.define(:version => 20120202200109) do
+
+  create_table "assignments", :force => true do |t|
+    t.string   "summary"
+    t.text     "more_info"
+    t.date     "due"
+    t.integer  "status"
+    t.integer  "assignor_id"
+    t.integer  "assignee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "document_contributors", :force => true do |t|
     t.integer  "document_id"

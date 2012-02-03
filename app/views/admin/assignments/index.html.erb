@@ -1,0 +1,33 @@
+<h1>Listing assignments</h1>
+
+<table>
+  <tr>
+    <th>Summary</th>
+    <th>More info</th>
+    <th>Due</th>
+    <th>Status</th>
+    <th>Assignor</th>
+    <th>Assignee</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @assignments.each do |assignment| %>
+  <tr>
+    <td><%= assignment.summary %></td>
+    <td><%= assignment.more_info %></td>
+    <td><%= assignment.due %></td>
+    <td><%= assignment.status %></td>
+    <td><%= assignment.assignor_id %></td>
+    <td><%= assignment.assignee_id %></td>
+    <td><%= link_to 'Show', [:admin, assignment] %></td>
+    <td><%= link_to 'Edit', edit_admin_assignment_path(assignment) %></td>
+    <td><%= link_to 'Destroy', [:admin, assignment], confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Assignment', new_admin_assignment_path %>

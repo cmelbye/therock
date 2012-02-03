@@ -1,0 +1,21 @@
+<% content_for :sidebar do %>
+<h3>Assignments</h3>
+<ul class="nav nav-list">
+	<%= nav_item("New assignment", new_admin_assignment_path, :icon => "icon-plus") %>
+	<li class="nav-header">Filters</li>
+	<%= nav_item("Assigned to you", admin_assignments_path, :icon => "icon-inbox") %>
+	<%= nav_item("Assigned by you", by_me_admin_assignments_path, :icon => "icon-share-alt") %>
+	<%= nav_item("All assignments", all_admin_assignments_path, :icon => "icon-list") %>
+</ul>
+<% end %>
+
+<% content_for :content do %>
+<div class="row">
+	<div class="span9 offset3">
+		<% if flash[:notice] %><div class="alert alert-success"><%= flash[:notice].html_safe %></div><% end %>
+		<%= yield %>
+	</div>
+</div>
+<% end %>
+
+<%= render :template => "layouts/admin" %>
