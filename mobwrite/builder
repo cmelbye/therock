@@ -1,3 +1,3 @@
 #!/bin/bash
 cd "$SERVICE_APPROOT"
-cp -a ~
+cp -a . ~
