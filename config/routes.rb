@@ -1,4 +1,5 @@
 Focus::Application.routes.draw do
+
   match '/admin' => 'admin#index', :as => :admin
 
   namespace :admin do
@@ -17,7 +18,9 @@ Focus::Application.routes.draw do
         get :all
         get :by_me
       end
-    end
+    end 
+
+    resources :photos
   end
   
 	match '/auth/:provider/callback' => 'sessions#create'

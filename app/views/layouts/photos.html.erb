@@ -1,0 +1,19 @@
+<% content_for :sidebar do %>
+<h3>Photos</h3>
+<ul class="nav nav-list">
+	<%= nav_item("Upload photo", new_admin_photo_path, :icon => "icon-plus") %>
+	<li class="nav-header">Filters</li>
+	<%= nav_item("All photos", admin_photos_path, :icon => "icon-th-large") %>
+</ul>
+<% end %>
+
+<% content_for :content do %>
+<div class="row">
+	<div class="span9 offset3">
+		<% if flash[:notice] %><div class="alert alert-success"><%= flash[:notice].html_safe %></div><% end %>
+		<%= yield %>
+	</div>
+</div>
+<% end %>
+
+<%= render :template => "layouts/admin" %>
