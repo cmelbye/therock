@@ -179,7 +179,7 @@ class TextObj(mobwrite_core.TextObj):
       content = redis_db.get(key)
       if content == None:
         self.setText(None)
-      else
+      else:
         self.setText(content.decode("utf-8"))
       self.changed = False
 
