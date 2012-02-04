@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/home/dotcloud/env/bin/python
 
 """MobWrite - Real-time Synchronization and Collaboration Service
 
@@ -107,6 +107,9 @@ class TextObj(mobwrite_core.TextObj):
     mobwrite_core.TextObj.setText(self, newText)
     self.lasttime = datetime.datetime.now()
 
+    if STORAGE_MODE == REDIS:
+      self.save()
+
   def cleanup(self):
     # General cleanup task.
     if self.views > 0:
@@ -169,6 +172,16 @@ class TextObj(mobwrite_core.TextObj):
       else:
         self.setText(None)
       self.changed = False
+    
+    if STORAGE_MODE == REDIS:
+      # Load the text (if present) from database.
+      key = "document:%s:body" % (self.name)
+      content = redis_db.get(key)
+      if content == None:
+        self.setText(None)
+      else
+        self.setText(content.decode("utf-8"))
+      self.changed = False
 
 
   def save(self):
@@ -210,6 +223,23 @@ class TextObj(mobwrite_core.TextObj):
         texts_db[self.name] = self.text.encode("utf-8")
         lasttime_db[self.name] = str(int(time.time()))
       self.changed = False
+    
+    if STORAGE_MODE == REDIS:
+      # Save the text to Redis
+      text_key = "document:%s:body" % (self.name)
+      lastmod_key = "document:%s:body:modified" % (self.name)
+      lastsave_key = "document:%s:body:lastsave" % (self.name)
+
+      if self.text is None:
+        redis_db.delete(text_key)
+        redis_db.delete(lasttime_key)
+        mobwrite_core.LOG.info("Nullified from DB: '%s'" % self)
+      else:
+        redis_db.set(text_key, self.text.encode("utf-8"))
+        redis_db.set(lastmod_key, str(int(time.mktime(self.lasttime.timetuple()))))
+        redis_db.set(lastsave_key, str(int(time.time())))
+      self.changed = False
+
 
 
 def fetch_textobj(name, view):
@@ -667,6 +697,9 @@ def cleanup_thread():
   # Every minute cleanup
   if STORAGE_MODE == BDB:
     import bsddb
+  
+  if STORAGE_MODE == REDIS:
+    import redis
 
   while True:
     mobwrite_core.LOG.info("Running cleanup task.")
@@ -714,7 +747,7 @@ def main():
   if STORAGE_MODE == REDIS:
     import redis
     global redis_db
-    redis_db = redis.StrictRedis(host='localhost', port=6379, db=0)
+    redis_db = redis.StrictRedis(host='rockonline-N5USRDTV.dotcloud.com', port=22492, password='FAjcoIHIpyz179gjMKMc')
 
   # Start up a thread that does timeouts and cleanup
   thread.start_new_thread(cleanup_thread, ())
