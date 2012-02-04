@@ -232,9 +232,9 @@ class TextObj(mobwrite_core.TextObj):
       lastsave_key = "document:%s:body:lastsave" % (self.name)
 
       if self.text is None:
-        redis_db.delete(text_key)
-        redis_db.delete(lasttime_key)
-        mobwrite_core.LOG.info("Nullified from DB: '%s'" % self)
+        #redis_db.delete(text_key)
+        #redis_db.delete(lasttime_key)
+        mobwrite_core.LOG.info("WARN: Nullified from DB, but did not delete: '%s'" % self)
       else:
         redis_db.set(text_key, self.text.encode("utf-8"))
         redis_db.set(lastmod_key, str(int(time.mktime(self.lasttime.timetuple()))))
