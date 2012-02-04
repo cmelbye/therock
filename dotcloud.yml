@@ -3,3 +3,7 @@ www:
 mobwrite:
   type: python
   approot: mobwrite
+redis:
+  type: redis
+db:
+  type: postgresql

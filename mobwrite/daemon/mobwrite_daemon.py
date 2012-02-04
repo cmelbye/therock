@@ -56,7 +56,8 @@ MAX_VIEWS = 10000
 MEMORY = 0
 FILE = 1
 BDB = 2
-STORAGE_MODE = MEMORY
+REDIS = 3
+STORAGE_MODE = REDIS
 
 # Relative location of the data directory.
 DATA_DIR = ROOT_DIR + "data"
@@ -67,6 +68,9 @@ texts = {}
 # Berkeley Databases
 texts_db = None
 lasttime_db = None
+
+# Redis Database
+redis_db = None
 
 # Lock to prevent simultaneous changes to the texts dictionary.
 lock_texts = thread.allocate_lock()
@@ -706,6 +710,11 @@ def main():
     global texts_db, lasttime_db
     texts_db = bsddb.hashopen(DATA_DIR + "/texts.db")
     lasttime_db = bsddb.hashopen(DATA_DIR + "/lasttime.db")
+  
+  if STORAGE_MODE == REDIS:
+    import redis
+    global redis_db
+    redis_db = redis.StrictRedis(host='localhost', port=6379, db=0)
 
   # Start up a thread that does timeouts and cleanup
   thread.start_new_thread(cleanup_thread, ())
@@ -721,6 +730,8 @@ def main():
     if STORAGE_MODE == BDB:
       texts_db.close()
       lasttime_db.close()
+    if STORAGE_MODE == REDIS:
+      redis_db.connection_pool.disconnect()
 
 
 if __name__ == "__main__":
