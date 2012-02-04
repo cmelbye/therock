@@ -187,7 +187,8 @@ class TextObj(mobwrite_core.TextObj):
   def save(self):
     # Save the text object to non-volatile storage.
     # Lock must be acquired by the caller to prevent simultaneous saves.
-    assert self.lock.locked(), "Can't save unless locked."
+    if STORAGE_MODE != REDIS:
+      assert self.lock.locked(), "Can't save unless locked."
 
     if STORAGE_MODE == FILE:
       # Save the text to disk.
