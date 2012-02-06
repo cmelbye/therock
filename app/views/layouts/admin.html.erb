@@ -8,6 +8,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller.controller_name %>-controller <%= controller.action_name %>-action">
+<h1>Maintenance</h1>
+<p>This app is down for maintenance. It'll be up shortly.</p>
+<!--
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
@@ -37,26 +40,6 @@
               <li><%= link_to "Photos", admin_photos_path %></li>
             </ul>
           </li>
-          <!--<li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Plan
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Assignments", "#" %></li>
-              <li><%= link_to "Calendar", "#" %></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Layout
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Feature", "#" %></li>
-              <li><%= link_to "Sections", "#" %></li>
-            </ul>
-          </li>-->
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             	Organize
@@ -89,13 +72,14 @@
   </div>
   <% if content_for?(:sidebar) %>
   <div class="span3 sidebar">
-    <%= yield :sidebar %>
+    <%# yield :sidebar %>
   </div>
   <% end %>
   <div class="container-fluid">
-    <%= content_for?(:content) ? yield(:content) : yield %>
+    <%# content_for?(:content) ? yield(:content) : yield %>
   </div>
-  <%= yield :outer_content %>
-  <%= yield :js %>
+  <%# yield :outer_content %>
+  <%# yield :js %>
+  -->
 </body>
 </html>
