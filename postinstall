@@ -1,3 +1,5 @@
 #!/bin/bash
-env
-bundle exec rake assets:precompile
+
+if [ "$DOTCLOUD_SERVICE_NAME" == "www" ]; then
+	bundle exec rake assets:precompile
+fi
