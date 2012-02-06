@@ -5,7 +5,7 @@ mobwrite:
   approot: mobwrite
   process: ~/daemon/mobwrite_daemon.py
   ports:
-  	mobwrite: tcp
+    mobwrite: tcp
 redis:
   type: redis
 db:
