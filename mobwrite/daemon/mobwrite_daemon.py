@@ -214,8 +214,7 @@ class TextObj(mobwrite_core.TextObj):
       else:
         self.setText(content.decode("utf-8"))
       self.changed = False
-
-
+  
   def save(self, timestamps=False):
     # Save the text object to non-volatile storage.
     # Lock must be acquired by the caller to prevent simultaneous saves.

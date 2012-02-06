@@ -36,7 +36,11 @@ class Document < ActiveRecord::Base
 	end
 
 	def modified_redis_key
-		"document:#{self.secure_id}:modified"
+		"document:#{self.secure_id}:modified_at"
+	end
+
+	def contributors_redis_key
+		"document:#{self.secure_id}:contributors"
 	end
 
 	def body
