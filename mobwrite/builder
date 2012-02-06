@@ -26,6 +26,10 @@ install_application() {
     rsync -aH --delete --exclude "data" * $HOME/
 }
 
+cd "$SERVICE_APPROOT"
+
 create_virtualenv
 install_dependencies
 install_application
+
+ls "$HOME"
