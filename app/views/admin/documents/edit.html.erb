@@ -3,7 +3,7 @@
 	<div class="editor-document-info">
 		<div class="container">
 			<h2><%= @document.name %></h2>
-			<div class="more-info"><%= link_to "&larr; Back to documents".html_safe, admin_documents_path %> &sdot; <%= link_to "Document info", [:admin, @document] %></div>
+			<div class="more-info"><%= link_to "&larr; Back to documents".html_safe, request.env['HTTP_REFERER'] %> &sdot; <%= link_to "Document info", [:admin, @document] %></div>
 		</div>
 	</div>
 	<div class="editor-toolbar btn-toolbar">

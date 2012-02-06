@@ -1,6 +1,8 @@
 namespace :focus do
 	desc "Perform MobWrite migrations"
 	task :mobwrite_migrate => :environment do
+		require "rdiscount"
+
 		puts "-----> MobWrite migrations"
 		puts "-----> Migrating documents..."
 
@@ -8,7 +10,7 @@ namespace :focus do
 
 		documents.each do |document|
 			contribs = 0
-			REDIS.set(document.body_redis_key, document.read_attribute(:body))
+			REDIS.set(document.body_redis_key, RDiscount.new(document.read_attribute(:body)).to_html)
 
 			document.document_contributors.order("id ASC").each do |dc|
 				contribs += 1
