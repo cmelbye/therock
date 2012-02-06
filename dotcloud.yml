@@ -1,6 +1,6 @@
 www:
   type: ruby
-mobwrite:
+sync:
   type: custom
   buildscript: mobwrite/builder
   approot: mobwrite
