@@ -1,4 +1,9 @@
 #!/bin/bash
+echo "approot"
+ls "$SERVICE_APPROOT"
+echo "home"
+ls ~
+echo "building"
 cd "$SERVICE_APPROOT"
 cp -a . ~
 cd
