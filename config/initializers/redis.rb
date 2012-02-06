@@ -1,0 +1,1 @@
+REDIS = Redis.new(:host => "rockonline-N5USRDTV.dotcloud.com", :port => 22492, :password => "FAjcoIHIpyz179gjMKMc")

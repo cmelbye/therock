@@ -7,7 +7,7 @@
   <%= javascript_include_tag "admin" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= controller.controller_name %>-controller <%= controller.action_name %>-action">
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container-fluid">
@@ -95,6 +95,7 @@
   <div class="container-fluid">
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
+  <%= yield :outer_content %>
   <%= yield :js %>
 </body>
 </html>

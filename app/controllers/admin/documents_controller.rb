@@ -41,6 +41,7 @@ class Admin::DocumentsController < ApplicationController
   # GET /documents/1/edit
   def edit
     @document = Document.find(params[:id])
+    render :layout => "admin"
   end
 
   # POST /documents

@@ -315,7 +315,7 @@ class MobWrite:
     textobj = viewobj.textobj
     if textobj.text is None:
       # A view is sending a valid delta on a file we've never heard of.
-      textobj.setText(viewobj.shadow)
+      textobj.setText(viewobj.shadow, viewobj, True)
       action["force"] = False
       LOG.debug("Set content: '%s'" % viewobj)
     else:
@@ -330,7 +330,7 @@ class MobWrite:
         (mastertext, results) = DMP.patch_apply(patches, textobj.text)
         LOG.debug("Patched (%s): '%s'" %
             (",".join(["%s" % (x) for x in results]), viewobj))
-      textobj.setText(mastertext)
+      textobj.setText(mastertext, viewobj, True)
 
 # Global Diff/Match/Patch object.
 DMP = dmp_module.diff_match_patch()

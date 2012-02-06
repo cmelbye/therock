@@ -26,4 +26,20 @@ class Document < ActiveRecord::Base
 
 		output
 	end
+
+	def secure_id
+		"a" + self.id.to_s + "-" + Digest::SHA1.hexdigest(self.id.to_s + MOBWRITE_SECRET_KEY)[0..7]
+	end
+
+	def body_redis_key
+		"document:#{self.secure_id}:body"
+	end
+
+	def modified_redis_key
+		"document:#{self.secure_id}:modified"
+	end
+
+	def body
+		REDIS.get(body_redis_key)
+	end
 end

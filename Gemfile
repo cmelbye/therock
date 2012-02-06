@@ -49,3 +49,5 @@ gem 'omniauth-google-oauth2', :git => 'git://github.com/zquestz/omniauth-google-
 
 gem 'carrierwave'
 gem "ckeditor", "3.7.0.rc2"
+
+gem 'redis'

@@ -35,6 +35,7 @@ import sys
 import time
 import thread
 import urllib
+import hashlib
 
 try:
   # Used by non-Google applications.
@@ -75,6 +76,30 @@ redis_db = None
 # Lock to prevent simultaneous changes to the texts dictionary.
 lock_texts = thread.allocate_lock()
 
+# Used to share stuff with the main app over insecure channels
+MOBWRITE_SECRET_KEY = "1w6fTtreKwd49mqNddCN1rRbynaTvN8Y8kfNcPvTNsYF0jIbO2zRTHJUH5BZS1H9kQwdt5LGht6Qvz78e4oSZR1KvuStxstApshocDBUlFmaX5TZz8j7QAzeJx5KWlfp"
+
+def parse_user_id(username_string):
+  username_string = username_string[1:]
+  parts = username_string.split("-")
+
+  if not len(parts) == 2:
+    return False
+
+  token_key = "user:%s:token" % parts[0]
+  username_token = redis_db.get(token_key)
+
+  if not username_token:
+    return False
+
+  h = hashlib.sha()
+  h.update("%s%s" % (username_token, MOBWRITE_SECRET_KEY))
+  correct_hash = h.hexdigest()
+
+  if correct_hash.startswith(parts[1]):
+    return int(parts[0])
+  else:
+    return False
 
 class TextObj(mobwrite_core.TextObj):
   # A persistent object which stores a text.
@@ -103,12 +128,19 @@ class TextObj(mobwrite_core.TextObj):
     global texts
     texts[self.name] = self
 
-  def setText(self, newText):
+  def setText(self, newText, viewobj=None, timestamps=False):
     mobwrite_core.TextObj.setText(self, newText)
     self.lasttime = datetime.datetime.now()
 
     if STORAGE_MODE == REDIS:
-      self.save()
+      self.save(timestamps)
+
+      if viewobj:
+        user_id = parse_user_id(viewobj.username)
+        if user_id:
+          key = "document:%s:contributors" % self.name
+          if not redis_db.zscore(key, str(user_id)):
+            redis_db.zadd(key, str(int(time.time())), str(int(user_id)))
 
   def cleanup(self):
     # General cleanup task.
@@ -184,7 +216,7 @@ class TextObj(mobwrite_core.TextObj):
       self.changed = False
 
 
-  def save(self):
+  def save(self, timestamps=False):
     # Save the text object to non-volatile storage.
     # Lock must be acquired by the caller to prevent simultaneous saves.
     if STORAGE_MODE != REDIS:
@@ -228,8 +260,8 @@ class TextObj(mobwrite_core.TextObj):
     if STORAGE_MODE == REDIS:
       # Save the text to Redis
       text_key = "document:%s:body" % (self.name)
-      lastmod_key = "document:%s:body:modified" % (self.name)
-      lastsave_key = "document:%s:body:lastsave" % (self.name)
+      lasttime_key = "document:%s:body:lasttime" % (self.name)
+      lastmod_key = "document:%s:body:modified_at" % (self.name)
 
       if self.text is None:
         #redis_db.delete(text_key)
@@ -237,8 +269,9 @@ class TextObj(mobwrite_core.TextObj):
         mobwrite_core.LOG.info("WARN: Nullified from DB, but did not delete: '%s'" % self)
       else:
         redis_db.set(text_key, self.text.encode("utf-8"))
-        redis_db.set(lastmod_key, str(int(time.mktime(self.lasttime.timetuple()))))
-        redis_db.set(lastsave_key, str(int(time.time())))
+        redis_db.set(lasttime_key, str(int(time.mktime(self.lasttime.timetuple()))))
+        if timestamps:
+          redis_db.set(lastmod_key, str(int(time.time())))
       self.changed = False
 
 
@@ -529,7 +562,7 @@ class DaemonMobWrite(SocketServer.StreamRequestHandler, mobwrite_core.MobWrite):
         mobwrite_core.LOG.debug("Nullifying: '%s'" % viewobj)
         textobj.lock.acquire()
         try:
-          textobj.setText(None)
+          textobj.setText(None, viewobj, True)
         finally:
           textobj.lock.release()
         viewobj.nullify();
@@ -571,7 +604,7 @@ class DaemonMobWrite(SocketServer.StreamRequestHandler, mobwrite_core.MobWrite):
           textobj.lock.acquire()
           try:
             if textobj.text != data:
-              textobj.setText(data)
+              textobj.setText(data, viewobj, True)
               mobwrite_core.LOG.debug("Overwrote content: '%s'" % viewobj)
           finally:
             textobj.lock.release()

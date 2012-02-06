@@ -3,6 +3,7 @@
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="mobwrite.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="http://rockonline.herokuapp.com/assets/admin-6b40d60f59863ac827403f69e4fe461a.css" />
 	<style>
 	* {
@@ -14,21 +15,21 @@
 		background-color: rgb(235, 235, 235);
 		padding-top: 130px;
 	}
-	.header {
+	.editor-header {
 		position: fixed;
 		width: 100%;
 		top: 0;
 	}
-	.document-info {
+	.editor-document-info {
 		background-color: #fff;
 		border-bottom: 1px solid rgb(229, 229, 229);
 	}
-	.document-info h2 {
+	.editor-document-info h2 {
 		font-size: 20px;
 		font-weight: normal;
 		padding: 20px 30px;
 	}
-	.toolbar {
+	.editor-toolbar {
 		background-color: rgb(245, 245, 245);
 		padding: 8px 30px;
 		font-size: 12px;
@@ -38,7 +39,7 @@
 		color: #000;
 		text-decoration: none;
 	}
-	.content-stuff {
+	.editor-document-body {
 		width: 700px;
 		padding: 80px;
 		border: 1px solid rgb(202, 202, 202);
@@ -48,7 +49,7 @@
 		min-height: 800px;
 		margin-bottom: 50px;
 	}
-	.content-stuff:focus {
+	.editor-document-body:focus {
 		outline: none;
 	}
 	ul {
@@ -59,53 +60,9 @@
 </head>
 <body>
 
-<div class="header">
-	<div class="document-info">
-		<h2>Music in the Margins</h2>
-	</div>
+<%= yield %>
 
-	<div class="toolbar">
-	<a href="#" class="bold-button">Bold</a>
-	<a href="#" class="link-button">Link</a>
-	<a href="#" class="ul-button">Unordered List</a>
-	</div>
-</div>
+<%= yield :js %>
 
-<div id="document-content" class="content-stuff" contentEditable="true">
-Hey!
-</div>
-
-<script>
-$(function() {
-	mobwrite.debug = true;
-	mobwrite.syncGateway = "http://rockonline1-n5usrdtv.dotcloud.com"
-	mobwrite.share('document-content');
-
-	$('.bold-button').click(function(e) {
-		e.preventDefault();
-
-		document.execCommand('bold');
-	});
-
-	$('.link-button').click(function(e) {
-		e.preventDefault();
-
-		document.execCommand('createLink', null, "http://google.com/");
-	});
-
-	$('.ul-button').click(function(e) {
-		e.preventDefault();
-
-		document.execCommand('insertUnorderedList');
-	});
-
-	$(document).keydown(function(e) {
-		if (e.keyCode == 9) {
-			document.execCommand('insertHTML', null, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-			return false;
-		}
-	});
-});
-</script>
 </body>
 </html>

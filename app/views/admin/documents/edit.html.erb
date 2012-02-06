@@ -1,76 +1,64 @@
-<div class="page-header"><h1>Edit Document</h1></div>
-
-<h2 class="document-name document-name-edit" id="document_name"><%= @document.name %></h2>
-<h3 class="document-info last"><%= link_to "View document information &raquo;".html_safe, [:admin, @document] %></h3>
-
-<%= form_for [:admin, @document] do |f| %>
-	<div class="tabbable">
-		<div class="wmd-button-bar-wrapper">
-			<div id="wmd-button-bar">
-				<div class="pull-right">
-					<div class="btn-toolbar">
-						<div class="btn-group">
-							<a href="#" class="btn" id="preview-button"><i class="icon-search"></i> Preview</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="tab-pane active" id="edit_document">
-			<div class="wmd-panel">
-				<div class="wmd-textarea-wrapper">
-					<div class="expandingArea">
-						<pre><span></span><br></pre>
-						<%= f.text_area :body, :id => "wmd-input" %>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="tab-pane" id="preview_document">
-			<div class="wmd-preview-wrapper"><div id="wmd-preview" class="wmd-panel wmd-preview"></div></div>
-		</div>
-
-		<div class="form-actions">
-			<button type="submit" class="btn btn-primary">Save Document</button>
-			<%= link_to "Cancel", admin_documents_path, :class => "btn", :confirm => "Are you sure? Your changes will not be saved." %>
+<% content_for :outer_content do %>
+<div class="editor-header">
+	<div class="editor-document-info">
+		<div class="container">
+			<h2><%= @document.name %></h2>
+			<div class="more-info"><%= link_to "&larr; Back to documents".html_safe, admin_documents_path %> &sdot; <%= link_to "Document info", [:admin, @document] %></div>
 		</div>
 	</div>
-<% end %>
+	<div class="editor-toolbar btn-toolbar">
+		<div class="container">
+			<div class="btn-group">
+				<a href="#" class="bold-button btn"><i class="icon-bold"></i></a>
+				<a href="#" class="italic-button btn"><i class="icon-italic"></i></a>
+			</div>
+			<div class="btn-group">
+				<a href="#" class="link-button btn"><i class="icon-share-alt"></i> Insert Link</a>
+			</div>
+			<div class="btn-group">
+				<a href="#" class="ul-button btn"><i class="icon-list"></i></a>
+			</div>
+		</div>
+	</div>
+</div>
 
-<%= render :partial => "rename" %>
+<div id="<%= @document.secure_id %>" class="editor-document-body" contentEditable="true">
+	<%= @document.body.to_s.html_safe %>
+</div>
+<% end %>
 
 <% content_for :js do %>
 <script>
 $(function() {
-	var converter = Markdown.getSanitizingConverter();
-	var editor = new Markdown.Editor(converter);
-	editor.run();
+	mobwrite.debug = true;
+	mobwrite.syncGateway = "http://rockonline1-n5usrdtv.dotcloud.com";
+	mobwrite.syncUsername = "<%= current_user.secure_id %>";
+	mobwrite.share('<%= @document.secure_id %>');
 
-	$("#renameModal").modal('hide');
-
-	$(".document_name").click(function() {
-		$("#renameModal").modal('show');
-	});
-
-	$("#preview-button").data('showing-preview', false);
-
-	$("#preview-button").click(function (e) {
+	$('.bold-button').click(function(e) {
 		e.preventDefault();
 
-		$(this).button('toggle');
-
-		if($(this).data("showing-preview") == false) {
-			$('#edit_document').removeClass('active');
-			$('#preview_document').addClass('active');
-			$(this).data("showing-preview", true);
-		} else {
-			$('#edit_document').addClass('active');
-			$('#preview_document').removeClass('active');
-			$(this).data("showing-preview", false);
-		}
+		document.execCommand('bold');
 	});
 
-	$('.expandingArea').expandElegantly();
+	$('.link-button').click(function(e) {
+		e.preventDefault();
+
+		document.execCommand('createLink', null, "http://google.com/");
+	});
+
+	$('.ul-button').click(function(e) {
+		e.preventDefault();
+
+		document.execCommand('insertUnorderedList');
+	});
+
+	$(document).keydown(function(e) {
+		if (e.keyCode == 9) {
+			document.execCommand('insertHTML', null, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+			return false;
+		}
+	});
 });
 </script>
 <% end %>
