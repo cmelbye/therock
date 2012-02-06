@@ -4,7 +4,7 @@ mobwrite:
   type: custom
   buildscript: mobwrite/builder
   approot: mobwrite
-  process: ~/daemon/mobwrite_daemon.py
+  process: ~/mobwrite/daemon/mobwrite_daemon.py
   ports:
     mobwrite: tcp
   packages:
