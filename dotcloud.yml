@@ -2,6 +2,7 @@ www:
   type: ruby
 mobwrite:
   type: custom
+  buildscript: mobwrite/builder
   approot: mobwrite
   process: ~/daemon/mobwrite_daemon.py
   ports:
