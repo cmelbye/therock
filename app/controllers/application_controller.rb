@@ -16,7 +16,8 @@ class ApplicationController < ActionController::Base
 	end
 
 	def show_maintenance_page
-		render :template => "layouts/maintenance"
+		render :template => "layouts/maintenance", :layout => false
+		return false
 	end
 
 	def logged_in?
