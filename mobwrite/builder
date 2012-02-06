@@ -2,3 +2,4 @@
 cd "$SERVICE_APPROOT"
 cp -a . ~
 cd
+pip install -r requirements.txt
