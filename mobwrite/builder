@@ -16,6 +16,8 @@ install_dependencies() {
 
     if [ -f requirements.txt ] ; then
         [ -d $download_cache ] || mkdir -p $download_cache
+        echo $PATH
+        ls "$HOME/env/bin"
         pip install --download-cache=$download_cache -r requirements.txt
     fi
 }
