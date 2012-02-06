@@ -41,6 +41,7 @@ end
 group :production do
   gem 'pg'
    gem 'newrelic_rpm'
+   gem 'therubyracer', :require => 'v8'
 end
 
 gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
