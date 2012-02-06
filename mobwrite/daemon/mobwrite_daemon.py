@@ -92,7 +92,7 @@ def parse_user_id(username_string):
   if not username_token:
     return False
 
-  h = hashlib.sha()
+  h = hashlib.sha1()
   h.update("%s%s" % (username_token, MOBWRITE_SECRET_KEY))
   correct_hash = h.hexdigest()
 
