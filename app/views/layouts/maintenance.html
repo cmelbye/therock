@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Rock</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <style>
+	body {
+		padding-top: 120px;
+	}
+	h1 {
+		font-size: 62pt;
+		line-height: 64pt;
+		margin-bottom: 20px;
+		font-weight: normal;
+	}
+	p.soon {
+		font-size: 40pt;
+		line-height: 42pt;
+		color: gray;
+		margin-bottom: 25px;
+	}
+	p.login {
+		font-size: 20pt;
+		line-height: 22pt;
+	}
+	p.login a {
+		color: lightGray;
+	}
+	</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Maintenance</h1>
+	<p class="soon">This app is down for maintenance.</p>
+	<p class="login">It'll be back shortly.</p>
+  </div>
+</body>
+</html>

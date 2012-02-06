@@ -1,7 +1,5 @@
-#!/usr/bin/env ruby
+#!/bin/bash
 
-service_name = ENV['DOTCLOUD_SERVICE_NAME'] # nil if we're www
-
-unless service_name
-	system('bundle exec rake assets:precompile')
-end
+if [ -z "$DOTCLOUD_SERVICE_NAME" ]; then
+	bundle exec rake assets:precompile
+fi
