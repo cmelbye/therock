@@ -7,4 +7,7 @@ echo "building"
 cd "$SERVICE_APPROOT"
 cp -a . ~
 cd
+ls /usr
+ls /usr/bin
+echo "$PATH"
 pip install -r requirements.txt
