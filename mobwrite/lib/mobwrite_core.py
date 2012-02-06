@@ -330,7 +330,12 @@ class MobWrite:
         (mastertext, results) = DMP.patch_apply(patches, textobj.text)
         LOG.debug("Patched (%s): '%s'" %
             (",".join(["%s" % (x) for x in results]), viewobj))
-      textobj.setText(mastertext, viewobj, True)
+      if mastertext != textobj.text:
+        changed = True
+      else:
+        changed = False
+      
+      textobj.setText(mastertext, viewobj, changed)
 
 # Global Diff/Match/Patch object.
 DMP = dmp_module.diff_match_patch()
