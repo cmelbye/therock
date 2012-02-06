@@ -7,6 +7,9 @@ mobwrite:
   process: ~/daemon/mobwrite_daemon.py
   ports:
     mobwrite: tcp
+  packages:
+    - python-setuptools
+    - python-dev
 redis:
   type: redis
 db:
