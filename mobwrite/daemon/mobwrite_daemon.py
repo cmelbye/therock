@@ -112,7 +112,7 @@ def parse_document_id(document_string):
   h.update("%s%s" % (parts[0], MOBWRITE_SECRET_KEY))
   correct_hash = h.hexdigest()
 
-  if correct_hash.startswith(parts[1])
+  if correct_hash.startswith(parts[1]):
     return int(parts[0])
   else:
     return False
