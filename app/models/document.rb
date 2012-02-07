@@ -5,6 +5,8 @@ class Document < ActiveRecord::Base
 		output = ""
 
 		case self.contributors.size
+		when 0
+			output = "(none yet)"
 		when 1
 			output = self.contributors.first.name
 		when 2

@@ -1,0 +1,12 @@
+development:
+  host: localhost
+  port: 6379
+
+test:
+  host: localhost
+  port: 6379
+
+production:
+  host: rockonline-N5USRDTV.dotcloud.com
+  port: 22492
+  password: FAjcoIHIpyz179gjMKMc

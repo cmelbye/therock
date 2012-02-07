@@ -1,1 +1,5 @@
-REDIS = Redis.new(:host => "rockonline-N5USRDTV.dotcloud.com", :port => 22492, :password => "FAjcoIHIpyz179gjMKMc")
+redis_config = YAML.load(Rails.root + 'config/redis.yml')[Rails.env]
+
+if redis_config
+	REDIS = Redis.new(:host => redis_config['host'], :port => redis_config['port'], :password => redis_config['password'])
+end
