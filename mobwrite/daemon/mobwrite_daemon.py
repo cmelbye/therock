@@ -128,14 +128,14 @@ class TextObj(mobwrite_core.TextObj):
     global texts
     texts[self.name] = self
 
-  def setText(self, newText, viewobj=None, timestamps=False):
+  def setText(self, newText, viewobj=None, doc_changed=False):
     mobwrite_core.TextObj.setText(self, newText)
     self.lasttime = datetime.datetime.now()
 
     if STORAGE_MODE == REDIS:
-      self.save(timestamps)
+      self.save(doc_changed)
 
-      if viewobj:
+      if viewobj && doc_changed:
         user_id = parse_user_id(viewobj.username)
         if user_id:
           key = "document:%s:contributors" % self.name
