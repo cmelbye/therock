@@ -156,7 +156,7 @@ class TextObj(mobwrite_core.TextObj):
       if viewobj and doc_changed:
         user_id = parse_user_id(viewobj.username)
         document_id = parse_document_id(self.name)
-        if user_id:
+        if user_id and document_id:
           c_key = "document:%s:contributors" % self.name
           d_key = "user:%d:documents" % user_id
           if not redis_db.zscore(c_key, str(user_id)):
