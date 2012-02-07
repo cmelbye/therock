@@ -102,7 +102,7 @@ def parse_user_id(username_string):
     return False
 
 def parse_document_id(document_string):
-  document_stirng = document_string[1:]
+  document_string = document_string[1:]
   parts = document_string.split("-")
 
   if not len(parts) == 2:
