@@ -50,6 +50,7 @@ class Document < ActiveRecord::Base
 				REDIS.zadd(contributors_redis_key, Time.now.to_i, user_id)
 				REDIS.sadd(User.documents_redis_key(user_id), self.id)
 			end
+			return true
 		end
 	end
 

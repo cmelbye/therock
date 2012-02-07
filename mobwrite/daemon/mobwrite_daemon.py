@@ -112,6 +112,8 @@ def parse_document_id(document_string):
   h.update("%s%s" % (parts[0], MOBWRITE_SECRET_KEY))
   correct_hash = h.hexdigest()
 
+  mobwrite_core.LOG.debug("Hashing %s %s %s" % (parts[0], parts[1], correct_hash))
+
   if correct_hash.startswith(parts[1]):
     return int(parts[0])
   else:
