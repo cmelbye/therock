@@ -1,5 +1,5 @@
 #!/bin/bash
 
 if [ -z "$DOTCLOUD_SERVICE_NAME" ]; then
-	bundle exec rake assets:precompile
+	bundle exec rake --trace assets:precompile
 fi
