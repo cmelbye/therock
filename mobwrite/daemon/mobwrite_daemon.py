@@ -1,4 +1,4 @@
-#!/home/dotcloud/env/bin/python
+#!/usr/bin/env python
 
 """MobWrite - Real-time Synchronization and Collaboration Service
 
