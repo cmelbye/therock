@@ -10,7 +10,7 @@ class Document < ActiveRecord::Base
 		when 2
 			output = self.contributors.all.map { |c| c.first_name }.join(' and ')
 		else
-			output = self.contributors.limit(2).all.map { |c| c.first_name }.join(', ')
+			output = self.contributors.first(2).all.map { |c| c.first_name }.join(', ')
 
 			others = self.contributors.size - 2
 
