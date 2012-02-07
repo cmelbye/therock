@@ -32,6 +32,22 @@ class Document < ActiveRecord::Base
 		User.where(:id => contributor_ids).all.sort_by { |u| sorter[u.id] }
 	end
 
+	def add_contributor!(who, force=false)
+		if who.is_a? Integer
+			user_id = who
+		elsif who.is_a? User
+			user_id = who.id
+		else
+			return false
+		end
+
+		if REDIS.zscore(contributors_redis_key, user_id) && !force
+			return false
+		else
+			REDIS.zadd(contributors_redis_key, Time.now.to_i, user_id)
+		end
+	end
+
 	def secure_id
 		"a" + self.id.to_s + "-" + Digest::SHA1.hexdigest(self.id.to_s + MOBWRITE_SECRET_KEY)[0..7]
 	end

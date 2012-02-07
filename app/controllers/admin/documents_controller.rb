@@ -51,7 +51,7 @@ class Admin::DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        @document.contributors << current_user
+        @document.add_contributor! current_user
         format.html { redirect_to edit_admin_document_path(@document), notice: '<strong>Awesome!</strong> The document was successfully created.' }
         format.json { render json: @document, status: :created, location: @document }
       else
