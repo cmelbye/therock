@@ -1,4 +1,4 @@
-#!/home/dotcloud/env/bin/python
+#!/usr/bin/env python
 
 """MobWrite - Real-time Synchronization and Collaboration Service
 
@@ -135,7 +135,7 @@ class TextObj(mobwrite_core.TextObj):
     if STORAGE_MODE == REDIS:
       self.save(doc_changed)
 
-      if viewobj && doc_changed:
+      if viewobj and doc_changed:
         user_id = parse_user_id(viewobj.username)
         if user_id:
           key = "document:%s:contributors" % self.name
