@@ -46,7 +46,10 @@ class Document < ActiveRecord::Base
 		if REDIS.zscore(contributors_redis_key, user_id) && !force
 			return false
 		else
-			REDIS.zadd(contributors_redis_key, Time.now.to_i, user_id)
+			REDIS.multi do
+				REDIS.zadd(contributors_redis_key, Time.now.to_i, user_id)
+				REDIS.sadd(User.documents_redis_key(user_id), self.id)
+			end
 		end
 	end
 

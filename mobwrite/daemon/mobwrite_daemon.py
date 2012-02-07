@@ -101,6 +101,22 @@ def parse_user_id(username_string):
   else:
     return False
 
+def parse_document_id(document_string):
+  document_stirng = document_string[1:]
+  parts = document_string.split("-")
+
+  if not len(parts) == 2:
+    return False
+
+  h = hashlib.sha1()
+  h.update("%s%s" % (parts[0], MOBWRITE_SECRET_KEY))
+  correct_hash = h.hexdigest()
+
+  if correct_hash.startswith(parts[1])
+    return int(parts[0])
+  else:
+    return False
+
 class TextObj(mobwrite_core.TextObj):
   # A persistent object which stores a text.
 
@@ -137,10 +153,16 @@ class TextObj(mobwrite_core.TextObj):
 
       if viewobj and doc_changed:
         user_id = parse_user_id(viewobj.username)
+        document_id = parse_document_id(self.name)
         if user_id:
-          key = "document:%s:contributors" % self.name
+          c_key = "document:%s:contributors" % self.name
+          d_key = "user:%d:documents" % user_id
           if not redis_db.zscore(key, str(user_id)):
-            redis_db.zadd(key, str(int(time.time())), str(int(user_id)))
+            pipe = r.pipeline(use_transaction=True)
+            pipe.zadd(c_key, str(int(time.time())), str(int(user_id)))
+            pipe.sadd(d_key, str(int(document_id)))
+            pipe.execute()
+
 
   def cleanup(self):
     # General cleanup task.

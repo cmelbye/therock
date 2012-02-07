@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
-	has_many :document_contributors, :foreign_key => "contributor_id", :dependent => :destroy
-	has_many :documents, :through => :document_contributors, :uniq => true, :order => 'documents.updated_at DESC'
+	def documents
+		document_ids = REDIS.smembers(self.class.documents_redis_key(self.id))
+
+		Document.where(:id => document_ids).order("updated_at DESC")
+	end
 
 	def name
 		if first_name && last_name
@@ -29,6 +32,10 @@ class User < ActiveRecord::Base
 			self.token = t
 		end
 		t
+	end
+
+	def self.documents_redis_key(k_id)
+		"user:#{k_id}:documents"
 	end
 
 	def token=(value)
