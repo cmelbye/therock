@@ -16,6 +16,7 @@ namespace :focus do
 				contribs += 1
 				unless REDIS.zscore(document.contributors_redis_key, dc.contributor_id)
 					REDIS.zadd(document.contributors_redis_key, dc.created_at.to_i, dc.contributor_id)
+					REDIS.sadd(User.documents_redis_key(dc.contributor_id), document.id)
 				end
 			end
 
