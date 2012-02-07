@@ -160,7 +160,7 @@ class TextObj(mobwrite_core.TextObj):
           c_key = "document:%s:contributors" % self.name
           d_key = "user:%d:documents" % user_id
           if not redis_db.zscore(c_key, str(user_id)):
-            pipe = r.pipeline(use_transaction=True)
+            pipe = redis_db.pipeline(use_transaction=True)
             pipe.zadd(c_key, str(int(time.time())), str(int(user_id)))
             pipe.sadd(d_key, str(int(document_id)))
             pipe.execute()
