@@ -1,6 +1,5 @@
 #!/bin/bash
-ls -la
-env
+
 if [ -z "$DOTCLOUD_SERVICE_NAME" ]; then
 	bundle exec rake assets:precompile
 fi

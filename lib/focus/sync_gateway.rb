@@ -7,18 +7,17 @@ module Focus
       s = TCPSocket.new 'rockonline-N5USRDTV.dotcloud.com', 22653
 
       out = ""
-      puts params['q']
+
       s.write params['q']
-      puts "wrote"
-      while !s.eof?
-        puts "recving"
-        out += s.recv(1024)
-        puts out
+
+      while line = s.gets
+        out += line
       end
 
       s.close
 
-      out
+      content_type "text/plain"
+      out + "\n"
     end
   end
 end

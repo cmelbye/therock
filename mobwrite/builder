@@ -1,7 +1,6 @@
 #!/bin/sh
 
 create_virtualenv() {
-	echo "virtual"
     local env_directory="$HOME/env"
 
     if [ ! -d $env_directory ] ; then
@@ -12,7 +11,6 @@ create_virtualenv() {
 }
 
 install_dependencies() {
-	echo "deps"
     local download_cache="$HOME/.pip/downloads/"
 
     if [ -f requirements.txt ] ; then
@@ -22,7 +20,6 @@ install_dependencies() {
 }
 
 install_application() {
-	echo "installing"
     rsync -aH --delete --exclude "data" * $HOME/
 }
 
@@ -31,5 +28,3 @@ cd "$SERVICE_APPROOT"
 create_virtualenv
 install_dependencies
 install_application
-
-ls "$HOME"
