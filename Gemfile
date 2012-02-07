@@ -54,3 +54,5 @@ gem "ckeditor", "3.7.0.rc2"
 gem 'redis'
 
 gem 'rdiscount'
+
+gem 'sinatra'

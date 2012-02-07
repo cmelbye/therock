@@ -1,4 +1,7 @@
+require 'focus/sync_gateway'
+
 Focus::Application.routes.draw do
+  match '/sync' => Focus::SyncGateway
 
   match '/admin' => 'admin#index', :as => :admin
 

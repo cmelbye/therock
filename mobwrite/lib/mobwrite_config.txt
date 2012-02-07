@@ -37,7 +37,7 @@ TIMEOUT_TELNET = 2.0
 
 ; Restrict all Telnet connections to come from this location.
 ; Set to "" to allow connections from anywhere.
-CONNECTION_ORIGIN = 127.0.0.1
+CONNECTION_ORIGIN = ""
 
 ; -------------------------------
 ; Settings for App Engine version
