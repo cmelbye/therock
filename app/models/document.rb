@@ -8,9 +8,9 @@ class Document < ActiveRecord::Base
 		when 1
 			output = self.contributors.first.name
 		when 2
-			output = self.contributors.all.map { |c| c.first_name }.join(' and ')
+			output = self.contributors.map { |c| c.first_name }.join(' and ')
 		else
-			output = self.contributors.first(2).all.map { |c| c.first_name }.join(', ')
+			output = self.contributors.first(2).map { |c| c.first_name }.join(', ')
 
 			others = self.contributors.size - 2
 
@@ -29,7 +29,7 @@ class Document < ActiveRecord::Base
 
 		sorter = Hash[contributor_ids.map(&:to_i).each_with_index.to_a]
 
-		User.where(:id => contributor_ids).all.sort_by { |u| map[u.id] }
+		User.where(:id => contributor_ids).all.sort_by { |u| sorter[u.id] }
 	end
 
 	def secure_id
