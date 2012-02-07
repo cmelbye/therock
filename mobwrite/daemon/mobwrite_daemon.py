@@ -505,9 +505,9 @@ class DaemonMobWrite(SocketServer.StreamRequestHandler, mobwrite_core.MobWrite):
     timeout_telnet = float(mobwrite_core.CFG.get("TIMEOUT_TELNET", 2.0))
     self.connection.settimeout(timeout_telnet)
     connection_origin = mobwrite_core.CFG.get("CONNECTION_ORIGIN", "")
-    if connection_origin and self.client_address[0] != connection_origin:
-      raise("Connection refused from %s (only %s allowed)." %
-          (self.client_address[0], connection_origin))
+    #if connection_origin and self.client_address[0] != connection_origin:
+    #  raise("Connection refused from %s (only %s allowed)." %
+    #      (self.client_address[0], connection_origin))
     mobwrite_core.LOG.info("Connection accepted from " + self.client_address[0])
 
     data = []
