@@ -12,7 +12,8 @@ namespace :focus do
 			contribs = 0
 			REDIS.set(document.body_redis_key, RDiscount.new(document.read_attribute(:body).to_s).to_html.gsub("<pre><code>", "<p>").gsub("</code></pre>", "</p>"))
 
-			document.document_contributors.order("id ASC").each do |dc|
+			document_contributors = DocumentContributor.where(:document_id => document.id).order("id ASC").all
+			document_contributors.each do |dc|
 				contribs += 1
 				unless REDIS.zscore(document.contributors_redis_key, dc.contributor_id)
 					REDIS.zadd(document.contributors_redis_key, dc.created_at.to_i, dc.contributor_id)
