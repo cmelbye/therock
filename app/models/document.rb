@@ -1,9 +1,6 @@
 class Document < ActiveRecord::Base
 	versioned
 
-	has_many :document_contributors, :order => :id, :dependent => :destroy
-	has_many :contributors, :through => :document_contributors, :uniq => true, :order => 'document_contributors.id ASC', :select => '"users".*, "document_contributors".*'
-
 	def pretty_contributors
 		output = ""
 
@@ -25,6 +22,14 @@ class Document < ActiveRecord::Base
 		end
 
 		output
+	end
+
+	def contributors
+		contributor_ids = REDIS.zrange(contributors_redis_key, 0, -1)
+
+		sorter = Hash[contributor_ids.map(&:to_i).each_with_index.to_a]
+
+		User.where(:id => contributor_ids).all.sort_by { |u| map[u.id] }
 	end
 
 	def secure_id
