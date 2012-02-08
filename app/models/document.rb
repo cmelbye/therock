@@ -82,7 +82,7 @@ class Document < ActiveRecord::Base
 
 	def destroy_redis_keys
 		# Remove document from My Documents lists of contributors
-		REDIS.zrange(self.contributors_redis_key).each do |uid|
+		REDIS.zrange(self.contributors_redis_key, 0, -1).each do |uid|
 			REDIS.srem(User.documents_redis_key(uid), self.id)
 		end
 
