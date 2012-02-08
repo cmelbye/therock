@@ -67,7 +67,7 @@ class Document < ActiveRecord::Base
 	end
 
 	def modified_redis_key
-		"document:#{self.secure_id}:modified_at"
+		"document:#{self.secure_id}:body:modified_at"
 	end
 
 	def contributors_redis_key
