@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	def documents
 		document_ids = REDIS.smembers(self.class.documents_redis_key(self.id))
 
-		Document.where(:id => document_ids).order("updated_at DESC")
+		Document.where(:id => document_ids)
 	end
 
 	def name
