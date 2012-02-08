@@ -1,6 +1,8 @@
 class Document < ActiveRecord::Base
 	versioned
 
+	after_destroy :destroy_redis_keys
+
 	def pretty_contributors
 		output = ""
 
@@ -76,5 +78,19 @@ class Document < ActiveRecord::Base
 
 	def body
 		REDIS.get(body_redis_key)
+	end
+
+	def destroy_redis_keys
+		# Remove document from My Documents lists of contributors
+		REDIS.zrange(self.contributors_redis_key).each do |uid|
+			REDIS.srem(User.documents_redis_key(uid), self.id)
+		end
+
+		# Remove our keys
+		REDIS.multi do
+			REDIS.rem(self.body_redis_key)
+			REDIS.rem(self.modified_redis_key)
+			REDIS.rem(self.contributors_redis_key)
+		end
 	end
 end
