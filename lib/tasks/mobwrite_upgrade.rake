@@ -26,4 +26,19 @@ namespace :focus do
 
 		puts "-----> All migrations completed successfully."
 	end
+
+	desc "Add timestamps to documents"
+	task :mobwrite_timestamps => :environment do
+		puts "-----> MobWrite migrations"
+		puts "-----> Adding timestamps to documents"
+
+		documents = Document.all
+
+		document.each do |document|
+			REDIS.set(document.modified_redis_key, document.updated_at.to_i)
+			puts "       Timestamp for document #{document.id} has been added."
+		end
+
+		puts "-----> All migrations completed successfully."
+	end
 end

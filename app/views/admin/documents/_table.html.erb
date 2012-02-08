@@ -11,7 +11,7 @@
     <tr>
       <td><%= link_to document.name, edit_admin_document_path(document) %></td>
       <td><%= document.pretty_contributors %></td>
-      <td><%= time_ago_in_words(document.updated_at) %> ago</td>
+      <td><%= time_ago_in_words(document.modified_at) %> ago</td>
     </tr>
     <% end -%>
   </tbody>
