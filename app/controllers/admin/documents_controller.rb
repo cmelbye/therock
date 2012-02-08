@@ -4,7 +4,7 @@ class Admin::DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = current_user.documents.all
+    @documents = current_user.documents.order("id DESC").all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class Admin::DocumentsController < ApplicationController
   end
 
   def all
-    @documents = Document.all
+    @documents = Document.order("id DESC").all
   end
 
   # GET /documents/1

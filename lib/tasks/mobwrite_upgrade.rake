@@ -34,7 +34,7 @@ namespace :focus do
 
 		documents = Document.all
 
-		document.each do |document|
+		documents.each do |document|
 			REDIS.set(document.modified_redis_key, document.updated_at.to_i)
 			puts "       Timestamp for document #{document.id} has been added."
 		end
