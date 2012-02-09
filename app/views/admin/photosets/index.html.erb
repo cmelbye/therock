@@ -1,25 +1,22 @@
-<h1>Listing photosets</h1>
+<div class="page-header">
+  <h1>Listing photosets</h1>
+</div>
 
-<table>
+<table class="table table-bordered table-striped">
+<thead>
   <tr>
     <th>Name</th>
     <th>Location</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
-
+</thead>
+<tbody>
 <% @photosets.each do |photoset| %>
   <tr>
     <td><%= photoset.name %></td>
     <td><%= photoset.location %></td>
-    <td><%= link_to 'Show', [:admin, photoset] %></td>
-    <td><%= link_to 'Edit', edit_admin_photoset_path(photoset) %></td>
-    <td><%= link_to 'Destroy', [:admin, photoset], confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', [:admin, photoset] %> <%= link_to 'Edit', edit_admin_photoset_path(photoset) %> <%= link_to 'Destroy', [:admin, photoset], confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
-
-<br />
-
-<%= link_to 'New Photoset', new_admin_photoset_path %>
