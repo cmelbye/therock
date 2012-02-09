@@ -2,7 +2,7 @@
 	<h1>Edit your profile</h1>
 </div>
 
-<%= form_for [:admin, @user] do |f| -%>
+<%= form_for [:admin, @user], :html => { :class => "form-horizontal" } do |f| -%>
 	<div class="control-group">
 	  <%= f.label :first_name, "First name", :class => "control-label" %>
 	  <div class="controls">
