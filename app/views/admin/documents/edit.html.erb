@@ -31,7 +31,7 @@
 <script>
 $(function() {
 	mobwrite.syncGateway = "/sync";
-	mobwrite.syncUsername = "<%= current_user.secure_id %>";
+	mobwrite.syncUsername = "<%= current_user.secure_id %>-" + mobwrite.uniqueId();
 	mobwrite.share('<%= @document.secure_id %>');
 
 	$('.bold-button').click(function(e) {
