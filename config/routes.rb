@@ -1,6 +1,8 @@
 require 'focus/sync_gateway'
 
 Focus::Application.routes.draw do
+  resources :photosets
+
   match '/sync' => Focus::SyncGateway
 
   match '/admin' => 'admin#index', :as => :admin
@@ -21,9 +23,9 @@ Focus::Application.routes.draw do
         get :all
         get :by_me
       end
-    end 
+    end
 
-    resources :photos
+    resources :photosets
   end
   
 	match '/auth/:provider/callback' => 'sessions#create'

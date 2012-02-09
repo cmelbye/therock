@@ -1,9 +1,9 @@
 <% content_for :sidebar do %>
 <h3>Photos</h3>
 <ul class="nav nav-list">
-	<%= nav_item("Upload photo", new_admin_photo_path, :icon => "icon-plus") %>
+	<%= nav_item("New photoset", new_admin_photoset_path, :icon => "icon-plus") %>
 	<li class="nav-header">Filters</li>
-	<%= nav_item("All photos", admin_photos_path, :icon => "icon-th-large") %>
+	<%= nav_item("All photosets", admin_photosets_path, :icon => "icon-th-large") %>
 </ul>
 <% end %>
 
