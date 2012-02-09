@@ -1,3 +1,15 @@
 h4 {
 	margin-bottom: 5px;
 }
+
+.controls-date select {
+	width: 60px;
+}
+
+.controls-date select:nth-child(1) {
+	width: 65px;
+}
+
+.controls-date select:nth-child(2) {
+	width: 120px;
+}

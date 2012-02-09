@@ -1,4 +1,4 @@
-<%= form_for([:admin, @assignment]) do |f| %>
+<%= form_for([:admin, @assignment], :html => {:class => "form-horizontal"}) do |f| %>
   <% if @assignment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
@@ -11,31 +11,50 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :summary %>
-    <%= f.text_field :summary %>
+  <div class="control-group">
+    <%= f.label :summary, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :summary, :class => "span6" %>
+      <p class="help-block">Give a short overview of the assignment.</p>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :more_info %>
-    <%= f.text_area :more_info %>
+
+  <div class="control-group">
+    <%= f.label :more_info, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_area :more_info, :class => "span6", :rows => 4 %>
+      <p class="help-block">If necessary, describe the assignment in depth.</p>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :due %>
-    <%= f.date_select :due %>
+
+  <div class="control-group">
+    <%= f.label :due, "Due date", :class => "control-label" %>
+    <div class="controls controls-date">
+      <%= f.date_select :due, :class => "input-xlarge" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :status %>
-    <%= f.number_field :status %>
+
+  <div class="control-group">
+    <%= f.label :section_id, "Section", :class => "control-label" %>
+    <div class="controls">
+      <%= collection_select :assignment, :section_id, Section.all, :id, :name, :prompt => true %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :assignor_id %>
-    <%= f.number_field :assignor_id %>
+
+  <div class="control-group">
+    <%= f.label :assignee_id, "Assignee", :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :assignee_id, :class => "span4" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :assignee_id %>
-    <%= f.number_field :assignee_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-actions">
+  <% if controller.action_name == "edit" %>
+    <button class="btn btn-primary" type="submit">Update Assignment</button>
+    <%= link_to "Cancel", [:admin, @photoset], :class => "btn" %>
+  <% else %>
+    <button class="btn btn-primary" type="submit">Create Assignment</button>
+    <%= link_to "Cancel", admin_photosets_path, :class => "btn" %>
+  <% end %>
   </div>
 <% end %>

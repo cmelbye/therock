@@ -23,7 +23,7 @@
 </div>
 
 <div id="<%= @document.secure_id %>" class="editor-document-body" contentEditable="true">
-	<%= @document.body.to_s.html_safe %>
+	<%= @document.body.to_s.html_safe || "&nbsp;".html_safe %>
 </div>
 <% end %>
 
