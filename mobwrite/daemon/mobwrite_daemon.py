@@ -727,6 +727,7 @@ class DaemonMobWrite(SocketServer.StreamRequestHandler, mobwrite_core.MobWrite):
       # Error; server could not parse client's delta.
       # Send a raw dump of the text.
       viewobj.shadow_client_version += 1
+      mobwrite_core.LOG.info("Sending raw text because of '%s' user: '%s'" % (viewobj.username, viewobj))
       if mastertext is None:
         mastertext = ""
         viewobj.edit_stack.append((viewobj.shadow_server_version,
