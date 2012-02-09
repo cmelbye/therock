@@ -1,5 +1,7 @@
 class Admin::SectionsController < ApplicationController
   layout "sections"
+  before_filter :login_required
+
   
   # GET /sections
   # GET /sections.json

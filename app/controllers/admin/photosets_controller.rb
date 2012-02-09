@@ -1,5 +1,7 @@
 class Admin::PhotosetsController < ApplicationController
   layout "photosets"
+  before_filter :login_required
+
   
   # GET /photosets
   # GET /photosets.json

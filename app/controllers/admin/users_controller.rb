@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
   layout "people"
+  before_filter :login_required
+
   
   def index
     @users = User.all

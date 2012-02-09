@@ -1,6 +1,8 @@
 class Admin::PhotosController < ApplicationController
 	layout "photos"
 	before_filter :find_photoset
+  	before_filter :login_required
+
 
 	def index
 		

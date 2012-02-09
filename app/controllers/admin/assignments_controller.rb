@@ -1,5 +1,7 @@
 class Admin::AssignmentsController < ApplicationController
   layout "assignments"
+  before_filter :login_required
+
 
   # GET /assignments
   # GET /assignments.json

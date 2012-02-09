@@ -1,5 +1,7 @@
 class Admin::DocumentsController < ApplicationController
   layout "documents"
+  before_filter :login_required
+
 
   # GET /documents
   # GET /documents.json
