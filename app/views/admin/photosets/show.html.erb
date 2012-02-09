@@ -1,15 +1,69 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+	<h1><%= @photoset.name %> <small><%= @photoset.location %></small></h1>
+</div>
 
-<p>
-  <b>Name:</b>
-  <%= @photoset.name %>
-</p>
+<div class="btn-toolbar document-toolbar">
+	<div class="btn-group">
+		<%= link_to "<i class='icon-pencil'></i> Upload Photo".html_safe, "#", :class => "btn photoset-upload-link" %>
+		<%= link_to "Edit".html_safe, edit_admin_photoset_path(@photoset), :class => "btn" %>
+	</div>
+</div>
 
-<p>
-  <b>Location:</b>
-  <%= @photoset.location %>
-</p>
+<div class="modal fade" id="uploadModal">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">×</a>
+		<h3>Upload Photo</h3>
+	</div>
+	<div class="modal-body">
+		<%= form_for [:admin, @photoset, Photo.new], :html => { :class => "form-horizontal" } do |f| -%>
+		<div class="control-group">
+			<%= f.label :photo, :class => "control-label" %>
+			<div class="controls">
+				<%= f.file_field :photo, :class => "input-xlarge" %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= f.label :caption, :class => "control-label" %>
+			<div class="controls">
+				<%= f.text_area :caption, :class => "input-xlarge", :rows => 3 %>
+				<p class="help-block">Who? What? Where? When? Why?</p>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-primary">Upload</button>
+		<a href="#" class="btn" data-dismiss="modal">Cancel</a>
+		<% end %>
+	</div>
+</div>
 
+<% if @photoset.photos.size > 0 %>
+<div class="photoset-photos">
+	<ul class="thumbnails">
+	<% @photoset.photos.each do |photo| %>
+		<li class="span3">
+			<div class="thumbnail">
+				<%= image_tag(photo.photo.thumb.url) %>
+				<div class="caption"><p><%= photo.caption %></p></div>
+			</div>
+		</li>
+	<% end %>
+	</ul>
+</div>
+<% else %>
+<div class="missing-data">
+	<h1>No photos have been uploaded to this set yet.</h1>
+</div>
+<% end %>
 
-<%= link_to 'Edit', edit_admin_photoset_path(@photoset) %> |
-<%= link_to 'Back', admin_photosets_path %>
+<% content_for :js do %>
+<script>
+$(function() {
+	$("#uploadModal").modal('hide');
+
+	$(".photoset-upload-link").click(function() {
+		$("#uploadModal").modal('show');
+	});
+});
+</script>
+<% end %>

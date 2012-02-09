@@ -49,6 +49,8 @@ gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
 gem 'omniauth-google-oauth2', :git => 'git://github.com/zquestz/omniauth-google-oauth2.git'
 
 gem 'carrierwave'
+gem 'fog'
+gem 'mini_magick'
 
 gem 'redis'
 

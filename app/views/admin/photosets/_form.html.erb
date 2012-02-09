@@ -27,7 +27,12 @@
 </div>
 
 <div class="form-actions">
-  <button class="btn btn-primary" type="submit">Save Photoset</button>
+<% if controller.action_name == "edit" %>
+  <button class="btn btn-primary" type="submit">Update Photoset</button>
+  <%= link_to "Cancel", [:admin, @photoset], :class => "btn" %>
+<% else %>
+  <button class="btn btn-primary" type="submit">Create Photoset</button>
   <%= link_to "Cancel", admin_photosets_path, :class => "btn" %>
+<% end %>
 </div>
 <% end %>

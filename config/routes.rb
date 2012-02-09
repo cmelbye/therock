@@ -25,7 +25,9 @@ Focus::Application.routes.draw do
       end
     end
 
-    resources :photosets
+    resources :photosets do
+      resources :photos
+    end
   end
   
 	match '/auth/:provider/callback' => 'sessions#create'
