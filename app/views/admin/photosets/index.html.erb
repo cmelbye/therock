@@ -2,6 +2,7 @@
   <h1>Listing photosets</h1>
 </div>
 
+<% if @photosets.size > 0 %>
 <table class="table table-bordered table-striped">
 <thead>
   <tr>
@@ -20,3 +21,8 @@
 <% end %>
 </tbody>
 </table>
+<% else %>
+  <div class="missing-data">
+    <h1>No one has created any photosets yet.</h1>
+  </div>
+<% end %>
