@@ -5,4 +5,4 @@
 //= require bootstrap.min
 //= require mobwrite
 
-if (!window.console) console = {log: function() {}};
+if (!window.console) console = {log: function() {}, info: function() {}};

@@ -30,7 +30,6 @@
 <% content_for :js do %>
 <script>
 $(function() {
-	mobwrite.debug = true;
 	mobwrite.syncGateway = "/sync";
 	mobwrite.syncUsername = "<%= current_user.secure_id %>";
 	mobwrite.share('<%= @document.secure_id %>');
