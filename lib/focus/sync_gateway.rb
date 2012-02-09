@@ -4,7 +4,11 @@ require 'socket'
 module Focus
   class SyncGateway < Sinatra::Base
     post "/sync" do
-      s = TCPSocket.new 'rockonline-N5USRDTV.dotcloud.com', 22653
+      if Rails.env.production?
+        s = TCPSocket.new 'rockonline-N5USRDTV.dotcloud.com', 22653
+      else
+        s = TCPSocket.new 'localhost', 3017
+      end
 
       out = ""
 

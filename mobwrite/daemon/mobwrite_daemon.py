@@ -804,7 +804,13 @@ def main():
   if STORAGE_MODE == REDIS:
     import redis
     global redis_db
-    redis_db = redis.StrictRedis(host='rockonline-N5USRDTV.dotcloud.com', port=22492, password='FAjcoIHIpyz179gjMKMc')
+
+    if os.environ.get("DOTCLOUD_PROJECT") == "rockonline":
+      redis_db = redis.StrictRedis(host='rockonline-N5USRDTV.dotcloud.com', port=22492, password='FAjcoIHIpyz179gjMKMc')
+      mobwrite_core.LOG.info("Connected to PRODUCTION Redis")
+    else:
+      redis_db = redis.StrictRedis(host='localhost', port=6379)
+      mobwrite_core.LOG.info("Connected to DEVELOPMENT Redis")
 
   # Start up a thread that does timeouts and cleanup
   thread.start_new_thread(cleanup_thread, ())

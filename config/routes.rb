@@ -8,7 +8,7 @@ Focus::Application.routes.draw do
   match '/admin' => 'admin#index', :as => :admin
 
   namespace :admin do
-    resources :documents, :except => :update do
+    resources :documents do
       collection do
         get :all
       end

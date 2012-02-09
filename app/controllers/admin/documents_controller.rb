@@ -68,9 +68,6 @@ class Admin::DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.update_attributes(params[:document].merge({:updated_by => current_user}))
-        #unless @document.document_contributors.find_by_contributor_id(current_user.id)
-        #  @document.contributors << current_user
-        #end
         format.html { redirect_to edit_admin_document_path(@document), notice: '<strong>Success!</strong> The document was successfully updated.' }
         format.json { head :ok }
       else
