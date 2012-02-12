@@ -15,7 +15,7 @@ class Admin::AssignmentsController < ApplicationController
   end
 
   def all
-    @assignments = Assignment.find_all_by_assignee_id(current_user.id)
+    @assignments = Assignment.all
 
     respond_to do |format|
       format.html # to.html.erb
@@ -66,7 +66,7 @@ class Admin::AssignmentsController < ApplicationController
 
     respond_to do |format|
       if @assignment.save
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully created.' }
+        format.html { redirect_to [:admin, @assignment], notice: 'Assignment was successfully created.' }
         format.json { render json: @assignment, status: :created, location: @assignment }
       else
         format.html { render action: "new" }
@@ -82,7 +82,7 @@ class Admin::AssignmentsController < ApplicationController
 
     respond_to do |format|
       if @assignment.update_attributes(params[:assignment])
-        format.html { redirect_to @assignment, notice: 'Assignment was successfully updated.' }
+        format.html { redirect_to [:admin, @assignment], notice: 'Assignment was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -98,7 +98,7 @@ class Admin::AssignmentsController < ApplicationController
     @assignment.destroy
 
     respond_to do |format|
-      format.html { redirect_to assignments_url }
+      format.html { redirect_to admin_assignments_url }
       format.json { head :ok }
     end
   end
