@@ -52,10 +52,10 @@
   <div class="form-actions">
   <% if controller.action_name == "edit" %>
     <button class="btn btn-primary" type="submit">Update Assignment</button>
-    <%= link_to "Cancel", [:admin, @photoset], :class => "btn" %>
+    <%= link_to "Cancel", [:admin, @assignment], :class => "btn" %>
   <% else %>
     <button class="btn btn-primary" type="submit">Create Assignment</button>
-    <%= link_to "Cancel", admin_photosets_path, :class => "btn" %>
+    <%= link_to "Cancel", admin_assignments_path, :class => "btn" %>
   <% end %>
   </div>
 <% end %>

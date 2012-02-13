@@ -6,6 +6,9 @@ class Assignment < ActiveRecord::Base
 	validates_presence_of :section_id
 	validates_presence_of :assignee_id
 
+	belongs_to :assignee, :class_name => "User"
+	belongs_to :assignor, :class_name => "User"
+
 	def assignee_name
 		@assignee_name
 	end

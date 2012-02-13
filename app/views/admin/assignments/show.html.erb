@@ -1,35 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1>Assignment details</h1>
+</div>
 
-<p>
-  <b>Summary:</b>
-  <%= @assignment.summary %>
-</p>
+<div class="row">
+  <div class="span6">
+    <h2><%= @assignment.summary %></h2>
+    
+    <p><%= @assignment.more_info %></p>
 
-<p>
-  <b>More info:</b>
-  <%= @assignment.more_info %>
-</p>
-
-<p>
-  <b>Due:</b>
-  <%= @assignment.due %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @assignment.status %>
-</p>
-
-<p>
-  <b>Assignor:</b>
-  <%= @assignment.assignor_id %>
-</p>
-
-<p>
-  <b>Assignee:</b>
-  <%= @assignment.assignee_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_admin_assignment_path(@assignment) %> |
-<%= link_to 'Back', admin_assignments_path %>
+    <h3>Recent activity</h3>
+  </div>
+  <div class="span3 assignment-sidebar">
+  <div class="inner">
+    <p><strong>Due date:</strong> <%= @assignment.due %></p>
+    <p><strong>Status:</strong> <%= status_label(@assignment) %></p>
+    <p><strong>Assigned to:</strong> <%= @assignment.assignee ? @assignment.assignee.name : "(no one)" %></p>
+    <p><strong>Assigned by:</strong> <%= @assignment.assignor ? @assignment.assignor.name : "(no one)" %></p>
+  </div>
+  </div>
+</div>
