@@ -2,6 +2,7 @@
     <h1>Assigned by you</h1>
 </div>
 
+<% if @assignments.size > 0 %>
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
@@ -18,8 +19,12 @@
       <td><%= link_to assignment.summary, [:admin, assignment] %></td>
       <td><%= assignment.due %></td>
       <td>Charlie</td>
-      <td>Kayla</td>
     </tr>
     <% end -%>
   </tbody>
 </table>
+<% else %>
+<div class="missing-data">
+  <h1>You haven't assigned anything yet.</h1>
+</div>
+<% end %>

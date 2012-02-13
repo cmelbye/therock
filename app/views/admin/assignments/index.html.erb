@@ -2,6 +2,7 @@
     <h1>Assigned to you</h1>
 </div>
 
+<% if @assignments.size > 0 %>
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
@@ -14,12 +15,16 @@
   <tbody>
     <% @assignments.each do |assignment| -%>
     <tr>
-      <td><span class="label label-important">Open</span></td>
+      <td><%= status_label(assignment) %></td>
       <td><%= link_to assignment.summary, [:admin, assignment] %></td>
       <td><%= assignment.due %></td>
-      <td>Charlie</td>
       <td>Kayla</td>
     </tr>
     <% end -%>
   </tbody>
 </table>
+<% else %>
+<div class="missing-data">
+  <h1>Nothing is assigned to you yet.</h1>
+</div>
+<% end %>

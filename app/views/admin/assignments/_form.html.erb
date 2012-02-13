@@ -44,7 +44,8 @@
   <div class="control-group">
     <%= f.label :assignee_id, "Assignee", :class => "control-label" %>
     <div class="controls">
-      <%= f.text_field :assignee_id, :class => "span4" %>
+      <%= text_field 'assignment', 'assignee_name', :class => "span4" %>
+      <%= f.hidden_field :assignee_id %>
     </div>
   </div>
 
@@ -58,3 +59,26 @@
   <% end %>
   </div>
 <% end %>
+
+<script>
+$(function() {
+
+
+  $("#assignment_assignee_name").autocomplete({
+    source: <%= User.all_in_autocomplete.to_json.html_safe %>,
+
+    focus: function(event, ui) {
+      $("#assignment_assignee_name").val(ui.item.label);
+
+      return false;
+    },
+
+    select: function(event, ui) {
+      $("#assignment_assignee_name").val(ui.item.label);
+      $("#assignment_assignee_id").val(ui.item.value);
+
+      return false;
+    }
+  });
+})
+</script>

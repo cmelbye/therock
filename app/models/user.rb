@@ -45,4 +45,8 @@ class User < ActiveRecord::Base
 	def generate_token
 		Digest::SHA2.hexdigest(MOBWRITE_SECRET_KEY + self.id.to_s + Time.now.to_i.to_s)
 	end
+
+	def self.all_in_autocomplete
+		self.all.map { |u| {:label => u.name, :value => u.id} }
+	end
 end
