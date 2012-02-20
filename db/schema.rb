@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120209190931) do
+ActiveRecord::Schema.define(:version => 20120220185948) do
 
   create_table "assignments", :force => true do |t|
     t.string   "summary"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(:version => 20120209190931) do
     t.string   "location"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.boolean  "published",   :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "document_id"
+    t.text     "body"
+    t.string   "headline"
   end
 
   create_table "sections", :force => true do |t|

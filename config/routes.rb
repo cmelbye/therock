@@ -9,6 +9,8 @@ Focus::Application.routes.draw do
 
   namespace :admin do
     resources :documents do
+      resource :post
+      
       collection do
         get :all
       end

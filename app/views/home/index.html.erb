@@ -1,5 +1,10 @@
 <h1>Rock Online</h1>
 
+<% @posts.each do |post| %>
+<h2><%= post.headline %></h2>
+<%= post.body.html_safe %>
+<% end %>
+
 <p class="login"><%= link_to "Staff login &raquo;".html_safe, admin_path %></p>
 
 <style>

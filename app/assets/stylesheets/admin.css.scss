@@ -3,7 +3,7 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require bootstrap
+ *= require cerulean
  *= require jquery.expand
  *= require documents
  *= require events
@@ -162,4 +162,9 @@ body {
        -moz-border-radius: 0;
             border-radius: 0;
   }
+}
+
+.btn:hover {
+  -webkit-transition: none !important;
+  transition: none !important;
 }

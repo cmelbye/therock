@@ -1,0 +1,43 @@
+<%= form_for([:admin, @document, @post], :url => admin_document_post_path(@document), :html => {:class => "form-horizontal"}) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= label_tag 'document', 'Headline', :class => "control-label" %>
+    <div class="controls">
+      <span class="input-xlarge uneditable-input"><%= @document.name %></span>
+      <p class="help-block">You can edit the headline by <%= link_to "renaming the document", admin_document_path(@document) %>.</p>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :published, "Published?", :class => "control-label" %>
+    <div class="controls">
+      <label class="checkbox">
+        <% if controller.action_name == "new" %>
+          <%= f.check_box :published, :checked => "checked", :class => "span6" %>
+        <% else %>
+          <%= f.check_box :published, :class => "span6" %>
+        <% end %>
+      </label>
+    </div>
+  </div>
+  <div class="form-actions">
+  <% if controller.action_name == "edit" %>
+    <button class="btn btn-primary" type="submit">Update Post</button>
+    <%= link_to "Cancel", [:admin, @document], :class => "btn" %>
+  <% else %>
+    <button class="btn btn-primary" type="submit">Create Post</button>
+    <%= link_to "Cancel", [:admin, @document], :class => "btn" %>
+  <% end %>
+  </div>
+<% end %>

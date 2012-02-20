@@ -1,6 +1,8 @@
 class Document < ActiveRecord::Base
 	versioned
 
+	has_one :post
+
 	after_destroy :destroy_redis_keys
 
 	def pretty_contributors

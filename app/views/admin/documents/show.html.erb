@@ -8,6 +8,7 @@
 <div class="btn-toolbar document-toolbar">
 	<div class="btn-group">
 		<%= link_to "<i class='icon-pencil'></i> Edit Document".html_safe, edit_admin_document_path(@document), :class => "btn" %>
+		<%= link_to "Publish".html_safe, admin_document_post_path(@document), :class => "btn" %>
 		<%= link_to "Rename".html_safe, "#", :class => "btn document-rename-link" %>
 		<%= link_to "Destroy".html_safe, [:admin, @document], :method => :delete, :confirm => "Are you sure you want to delete this document?", :class => "btn" %>
 	</div>
