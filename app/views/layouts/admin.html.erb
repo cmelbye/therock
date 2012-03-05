@@ -21,56 +21,19 @@
         <ul class="nav">
           <%= nav_item("Documents", admin_documents_path) %>
           <%= nav_item("Photos", admin_photosets_path) %>
-          <!--
+          <%= nav_item( "Assignments", admin_assignments_path ) %>
+
+          <%= nav_item("People", admin_users_path) %>
+		  
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Write
+            	Settings
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= nav_item( "Documents", admin_documents_path ) %></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Media
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= nav_item( "Photos", admin_photosets_path ) %></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Plan
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Assignments", "#" %></li>
-              <li><%= link_to "Calendar", "#" %></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Layout
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Feature", "#" %></li>
-              <li><%= link_to "Sections", "#" %></li>
-            </ul>
-          </li>-->
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            	Plan
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= nav_item( "Assignments", admin_assignments_path ) %></li>
               <li><%= nav_item( "Sections", admin_sections_path ) %></li>
             </ul>
           </li>
-          <%= nav_item("People", admin_users_path) %>
         </ul>
 				
 				<ul class="nav pull-right">
