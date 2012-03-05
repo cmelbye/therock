@@ -2,14 +2,45 @@
 <html>
 <head>
   <title>Rock Online</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "home" %>
+  <%= javascript_include_tag "home" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
-    <%= content_for?(:content) ? yield(:content) : yield %>
-  </div>
-  <%= yield :js %>
+	<%= yield :outer_content %>
+	<div class="headlines">
+		<div class="container">
+			<%= yield %>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="span3">
+					<address>
+						<strong>The Rock Newspaper</strong><br/>
+						5810 McArthur Ranch Road<br/>
+						Highlands Ranch, CO 80124<br/>
+						<a href="mailto:editors@therocknewspaper.com">editors@therocknewspaper.com</a>
+					</address>
+				</div>
+				<div class="span3">
+					<ul class="nav">
+						<li><a href="#">News</a></li>
+						<li><a href="#">In Depth</a></li>
+						<li><a href="#">Opinions</a></li>
+						<li><a href="#">Sports</a></li>
+					</ul>
+				</div>
+				<div class="span3">
+					&copy; 2012 The Rock Newspaper.<br />
+					All rights reserved.
+				</div>
+				<div class="span3">
+					<%= link_to "Staff login", admin_path %>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

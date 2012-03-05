@@ -1,33 +1,149 @@
-<h1>Rock Online</h1>
-
-<% @posts.each do |post| %>
-<h2><%= post.headline %></h2>
-<%= post.body.html_safe %>
+<% content_for :outer_content do %>
+<div class="feature">
+	<div class="container">
+		<ul class="nav nav-pills">
+			<li class="logo">the<span>rock</span></li>
+			<li><a href="#">news</a></li>
+			<li><a href="#">in depth</a></li>
+			<li><a href="#">opinions</a></li>
+			<li><a href="#">sports</a></li>
+		</ul>
+	</div>
+	<div class="carousel" id="featureCarousel">
+		<div class="carousel-inner">
+          <div class="item active">
+            <img src="http://i.imgur.com/2ehd0.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>First Thumbnail label</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="http://i.imgur.com/XkDCq.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Second Thumbnail label</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+          </div>
+          <div class="item">
+            <img src="http://i.imgur.com/iOCK9.jpg" alt="">
+            <div class="carousel-caption">
+              <h4>Third Thumbnail label</h4>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            </div>
+          </div>
+        </div>
+				
+		<a class="carousel-control left" href="#featureCarousel" data-slide="prev">&lsaquo;</a>
+		<a class="carousel-control right" href="#featureCarousel" data-slide="next">&rsaquo;</a>
+	</div>
+</div>
 <% end %>
 
-<p class="login"><%= link_to "Staff login &raquo;".html_safe, admin_path %></p>
-
-<style>
-body {
-	padding-top: 120px;
-}
-h1 {
-	font-size: 62pt;
-	line-height: 64pt;
-	margin-bottom: 20px;
-	font-weight: normal;
-}
-p.soon {
-	font-size: 40pt;
-	line-height: 42pt;
-	color: gray;
-	margin-bottom: 25px;
-}
-p.login {
-	font-size: 20pt;
-	line-height: 22pt;
-}
-p.login a {
-	color: lightGray;
-}
-</style>
+<div class="row">
+	<div class="span8">
+		<div class="row">
+		<div class="span4 article-section">
+			<h2>the<span>news</span></h2>
+			<div class="article-teaser">
+				<h3>Jags win cool competition, here's why you care</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla consectetur pulvinar. Mauris ante mauris, egestas quis tristique ut, elementum nec tellus. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. Maecenas elementum ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+			<div class="article-teaser">
+				<h3>Jags win cool competition, here's</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla consectetur pulvinar. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. Maecenas elementum ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+			<div class="article-teaser">
+				<h3>Jags win cool competition, here's why you care</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla consectetur pulvinar. Mauris ante mauris, egestas quis tristique ut, elementum nec tellus. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. Maecenas elementum ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+		</div>
+		<div class="span4 article-section">
+			<h2>in<span>depth</span></h2>
+			<div class="article-teaser">
+				<h3>Jags win cool competition, here's why you care</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>Mauris ante mauris, egestas quis tristique ut, elementum nec tellus. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. Maecenas elementum ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+			<div class="article-teaser">
+				<h3>Jags win cool competition, here's</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla consectetur pulvinar. Mauris ante mauris, egestas quis tristique ut, elementum nec tellus. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. Maecenas elementum ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+			<div class="article-teaser">
+				<h3>Jags win cool competition, here's why you care</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. Maecenas elementum ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+		</div>
+		</div>
+		<div class="row">
+		<div class="span4 article-section">
+			<h2>the<span>opinions</span></h2>
+			<div class="article-teaser">
+				<h3>Jags win cool competition, here's why you care</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla consectetur pulvinar. Mauris ante mauris, egestas quis tristique ut, elementum nec tellus. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. Maecenas elementum ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+			<div class="article-teaser">
+				<h3>Jags win, here's why you care</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>consectetur adipiscing elit. Ut fringilla consectetur pulvinar. Mauris ante mauris, egestas quis tristique ut, elementum nec tellus. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. Maecenas elementum ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+			<div class="article-teaser">
+				<h3>Jags win cool competition, here's why</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>Mauris ante mauris, egestas quis tristique ut, elementum nec tellus. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. Maecenas elementum ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+		</div>
+		<div class="span4 article-section">
+			<h2>the<span>game</span></h2>
+			<div class="article-teaser">
+				<h3>Jags win cool, here's why you care</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla consectetur pulvinar. Mauris ante mauris, egestas quis tristique ut, elementum nec tellus. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+			<div class="article-teaser">
+				<h3>Jags win cool competition, here's why</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla consectetur pulvinar. Mauris ante mauris, egestas. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. Maecenas elementum ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+			<div class="article-teaser">
+				<h3>Jags win cool competition, here's why you care</h3>
+				<div class="article-byline">By Charlie Melbye on Nov. 13, 2012</div>
+				<img src="http://placehold.it/120x80">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut fringilla consectetur pulvinar. Mauris ante mauris, egestas quis tristique ut, elementum nec tellus. Phasellus rhoncus lacus vel sapien sodales nec rutrum libero ornare. Maecenas elementum ornare pulvinar. Suspendisse sed massa eros, at elementum tortor.</p>
+				<p><a href="#">Read more &raquo;</a></p>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="fb-like-box" data-href="http://www.facebook.com/therocknews" data-width="214" data-show-faces="true" data-stream="false" data-header="true"></div>
+	</div>
+</div>
