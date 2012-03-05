@@ -9,7 +9,7 @@
 			<%= t.day(:day_method => :due) do |day, assignments| %>
 				<div class="day"><%= day.day %></div>
 				<% assignments.each do |assignment| %>
-					<div class="label label-info"><%= link_to assignment.summary, admin_assignment_path(assignment) %></div>
+				<%= link_to assignment.summary, admin_assignment_path(assignment), :class => "label label-info" %>
 				<% end %>
 			<% end %>
 		<% end %>
