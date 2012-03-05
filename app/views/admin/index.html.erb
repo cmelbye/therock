@@ -5,7 +5,7 @@
 		</div>
 		
 		<%= calendar_for(Assignment.all, :first => :today, :last => (Date.today + 7*2), :html => {:class => "table table-calendar"}) do |t| %>
-			<%= t.head('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun') %>
+		<%= t.head('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat') %>
 			<%= t.day(:day_method => :due) do |day, assignments| %>
 				<div class="day"><%= day.day %></div>
 				<% assignments.each do |assignment| %>
