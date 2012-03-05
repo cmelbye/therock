@@ -1,13 +1,33 @@
 table.table-calendar {
+	tr:hover {
+		background-color: inherit;
+	}
+	
 	th {
 		text-align: center;
 	}
-	tr td:first-of-type, tr td:last-of-type {
-		background-color: #f0f0f0;
-	}
+	
 	td {
-		text-align: right;
-		font-weight: bold;
+		.day {
+			text-align: right;
+			text-align: right;
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+		.label {
+			a {
+				color: #fff;
+				&:hover {
+					color: #fff;
+					text-decoration: none;
+				}
+			}
+			text-transform: none;
+			font-weight: normal;
+			line-height: 1.4em;
+			font-size: 12px;
+			padding: 2px 5px;
+		}
 		font-size: 90%;
 		width: 14%;
 		height: 120px;
@@ -15,9 +35,13 @@ table.table-calendar {
 		&:last-of-type {
 			border-right: 1px solid #DDD;
 		}
-		&.active {
+		&.today {
 			background-color: lightYellow;
 		}
+		&.weekend {
+			background-color: #f0f0f0;
+		}
 	}
+	
 	border-bottom: 1px solid #DDD;
 }

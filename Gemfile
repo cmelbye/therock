@@ -18,7 +18,7 @@ group :assets do
 end
 
 gem 'thin'
-
+gem "watu_table_builder", :require => "table_builder"
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password

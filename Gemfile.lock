@@ -177,6 +177,7 @@ GEM
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    watu_table_builder (0.3.0)
 
 PLATFORMS
   ruby
@@ -201,3 +202,4 @@ DEPENDENCIES
   turn
   uglifier (>= 1.0.3)
   vestal_versions!
+  watu_table_builder

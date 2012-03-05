@@ -3,39 +3,15 @@
 		<div class="page-header">
 			<h1><%= @greeting %></h1>
 		</div>
-
-		<table class="table table-calendar">
-			<thead>
-				<tr>
-					<th>Sun</th>
-					<th>Mon</th>
-					<th>Tue</th>
-					<th>Wed</th>
-					<th>Thu</th>
-					<th>Fri</th>
-					<th>Sat</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>5</td>
-					<td>6</td>
-					<td>7</td>
-					<td>8</td>
-					<td>9</td>
-					<td>10</td>
-					<td>11</td>
-				</tr>
-				<tr>
-					<td>12</td>
-					<td>13</td>
-					<td>14</td>
-					<td>15</td>
-					<td>16</td>
-					<td>17</td>
-					<td>18</td>
-				</tr>
-			</tbody>
-		</table>
+		
+		<%= calendar_for(Assignment.all, :first => :today, :last => (Date.today + 7*2), :html => {:class => "table table-calendar"}) do |t| %>
+			<%= t.head('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun') %>
+			<%= t.day(:day_method => :due) do |day, assignments| %>
+				<div class="day"><%= day.day %></div>
+				<% assignments.each do |assignment| %>
+					<div class="label label-info"><%= link_to assignment.summary, admin_assignment_path(assignment) %></div>
+				<% end %>
+			<% end %>
+		<% end %>
 	</div>
 </div>
