@@ -16,5 +16,5 @@ class Assignment < ActiveRecord::Base
   
   # Virtual attribute that facilitates setting the assignee
   # name in the assignee autocompleter.
-  attr_writer :assignee_name
+  attr_accessor :assignee_name
 end
