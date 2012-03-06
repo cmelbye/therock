@@ -3,6 +3,8 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.expand
+//= require wysiparser
+//= require wysihtml5
 //= require bootstrap.min
 //= require mobwrite
 

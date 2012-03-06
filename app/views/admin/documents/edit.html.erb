@@ -1,69 +1,37 @@
-<% content_for :outer_content do %>
-<div class="editor-header">
-	<div class="editor-document-info">
-		<div class="container">
-			<h2><%= @document.name %></h2>
-			<div class="more-info"><%= link_to "&larr; Back to documents".html_safe, all_admin_documents_path %> &sdot; <%= link_to "Document info", [:admin, @document] %></div>
-		</div>
-	</div>
-	<div class="editor-toolbar btn-toolbar">
-		<div class="container">
-			<div class="btn-group">
-				<a href="#" class="bold-button btn btn-primary"><i class="icon-white icon-bold"></i></a>
-				<a href="#" class="italic-button btn btn-primary"><i class="icon-white icon-italic"></i></a>
+<div class="row">
+	<div class="span9">
+		<div class="document-edit">
+			<div class="document-edit-name">
+				<%= @document.name %>
 			</div>
-			<div class="btn-group">
-				<a href="#" class="link-button btn btn-primary"><i class="icon-white icon-share-alt"></i> Insert Link</a>
+			<div class="document-edit-toolbar" id="<%= @document.secure_id %>-toolbar">
+				<a data-wysihtml5-command="bold" class="btn btn-mini"><strong>Bold</strong></a>
+				<a data-wysihtml5-command="italic" class="btn btn-mini"><em>Italic</em></a>
 			</div>
-			<div class="btn-group">
-				<a href="#" class="ul-button btn btn-primary"><i class="icon-white icon-list"></i></a>
+			<div class="document-edit-body">
+				<textarea id="<%= @document.secure_id %>" placeholder="Start writing your document here..."><%= @document.body ? @document.body.to_s.html_safe : "&nbsp;".html_safe %></textarea>
 			</div>
 		</div>
 	</div>
+	<div class="span3">
+		<div class="document-back">
+			<%= link_to "&larr; Back to documents", all_admin_documents_path %>
+		</div>
+	</div>
 </div>
-
-<div id="<%= @document.secure_id %>" class="editor-document-body" contentEditable="true">
-	<%= @document.body ? @document.body.to_s.html_safe : "&nbsp;".html_safe %>
-</div>
-<% end %>
 
 <% content_for :js do %>
 <script>
 $(function() {
+	var editor = new wysihtml5.Editor('<%= @document.secure_id %>', {
+		style: false,
+		stylesheets: ['<%= asset_path("admin.css") %>'],
+		toolbar: '<%= @document.secure_id %>-toolbar',
+		parserRules:  wysihtml5ParserRules});
+	
 	mobwrite.syncGateway = "/sync";
 	mobwrite.syncUsername = "<%= current_user.secure_id %>-" + mobwrite.uniqueId();
 	mobwrite.share('<%= @document.secure_id %>');
-
-	$('.bold-button').click(function(e) {
-		e.preventDefault();
-
-		document.execCommand('bold');
-	});
-
-	$('.italic-button').click(function(e) {
-		e.preventDefault();
-
-		document.execCommand('italic');
-	});
-
-	$('.link-button').click(function(e) {
-		e.preventDefault();
-
-		document.execCommand('createLink', null, "http://google.com/");
-	});
-
-	$('.ul-button').click(function(e) {
-		e.preventDefault();
-
-		document.execCommand('insertUnorderedList');
-	});
-
-	$(document).keydown(function(e) {
-		if (e.keyCode == 9) {
-			document.execCommand('insertHTML', null, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-			return false;
-		}
-	});
 });
 </script>
 <% end %>

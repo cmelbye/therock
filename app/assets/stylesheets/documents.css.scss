@@ -31,8 +31,7 @@ h3.last {
 }
 
 body.documents-controller.edit-action {
-	background-color: rgb(235, 235, 235);
-	padding-top: 180px;
+	background-color: #f8f8f8;
 }
 
 .editor-header {
@@ -75,4 +74,33 @@ body.documents-controller.edit-action {
 }
 .editor-document-body:focus {
 	outline: none;
+}
+iframe.wysihtml5-sandbox {
+	width: 100%;
+	min-height: 600px;
+}
+.document-edit {
+	background-color: #fff;
+	padding: 40px;
+	border: 1px solid rgb(202, 202, 202);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	.document-edit-name {
+		font-size: 20px;
+		line-height: 1;
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
+	.document-edit-toolbar {
+		margin-bottom: 20px;
+		.btn {
+			margin-right: 5px;
+		}
+	}
+}
+body.wysihtml5-editor {
+	font-family: Georgia, monospace;
+}
+body.placeholder {
+	color: #666;
+	font-style: italic
 }

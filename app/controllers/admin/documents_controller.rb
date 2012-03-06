@@ -2,8 +2,7 @@
 class Admin::DocumentsController < ApplicationController
   layout "documents"
   before_filter :login_required
-
-
+  
   # Finds all Document objects that the user has contributed to.
   def index
     @documents = current_user.documents.order("id DESC").all
@@ -44,7 +43,6 @@ class Admin::DocumentsController < ApplicationController
   # GET /documents/1/edit
   def edit
     @document = Document.find(params[:id])
-    render :layout => "admin"
   end
 
   # POST /documents
