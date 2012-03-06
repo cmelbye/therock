@@ -1,3 +1,4 @@
+# Represents a post in the database.
 class Post < ActiveRecord::Base
 	belongs_to :document
 

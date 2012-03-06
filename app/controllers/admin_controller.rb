@@ -1,7 +1,13 @@
+module Admin #:nodoc:
+end
+
+# Controller for root admin pages.
 class AdminController < ApplicationController
   layout "admin"
   before_filter :login_required
 
+  # Determines the current time and generates an appropriate greeting
+  # for the user depending on the time of day.
   def index
     current_time = Time.now.in_time_zone("Mountain Time (US & Canada)")
 

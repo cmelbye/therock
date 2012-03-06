@@ -57,3 +57,6 @@ gem 'redis'
 gem 'rdiscount'
 
 gem 'sinatra'
+
+gem 'sdoc'
+

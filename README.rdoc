@@ -1,0 +1,17 @@
+== \Focus
+
+\Focus is a web-based work environment for online newsrooms.
+
+It facilitates collaborating on documents in real-time, keeping track of assignments, managing photo albums, and more.
+
+=== Instructions
+
+1. Install all dependencies using Bundler.
+    bundle install
+2. Run \Focus's web server and its supporting daemons.
+    rake start
+3. Open http://localhost:3000 in your favorite web browser.
+
+=== Documentation
+
+Run <tt>rake rdoc</tt> and open <tt>doc/index.html</tt> in your web browser.

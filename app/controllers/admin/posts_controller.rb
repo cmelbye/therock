@@ -1,7 +1,10 @@
+# Controller that facilitates the publishing of documents through Post objects
 class Admin::PostsController < ApplicationController
 	layout "documents"
 	before_filter :find_document
 
+  # If the document has been posted, redirect to the edit publish options page. If
+  # not, redirect to the publish page.
 	def show
 		@post = @document.post
 
@@ -12,14 +15,17 @@ class Admin::PostsController < ApplicationController
 		end
 	end
 
+  # Shows publish options for documents that haven't been published yet
 	def new
 		@post = @document.build_post
 	end
-
+  
+  # Allows the user to edit publish options after the Post has already been created
 	def edit
 		@post = @document.post
 	end
-
+  
+  # Publishes the Document by creating its Post object
 	def create
 		@post = @document.build_post(params[:post])
 
@@ -30,6 +36,7 @@ class Admin::PostsController < ApplicationController
 		end
 	end
 
+  # Updates publish options
 	def update
 		@post = @document.post
 
@@ -40,7 +47,7 @@ class Admin::PostsController < ApplicationController
 		end
 	end
 
-	protected
+	private
 	def find_document
 		@document ||= Document.find(params[:document_id])
 	end

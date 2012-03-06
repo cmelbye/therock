@@ -1,7 +1,15 @@
 require 'sinatra/base'
 require 'socket'
 
-module Focus
+module Focus #:nodoc:
+  
+  # This is a Sinatra app that connects to the MobWrite daemon via
+  # a socket, sends a provided MobWrite command to the daemon, and
+  # then returns the result.
+  #
+  # Essentially, it's a proxy to the MobWrite daemon so that the
+  # MobWrite Javascript client can access it.
+  
   class SyncGateway < Sinatra::Base
     post "/sync" do
       if Rails.env.production?

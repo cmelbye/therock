@@ -4,7 +4,7 @@
 
 <% @sections.each do |section| %>
 <div class="section" style="background-color: #<%= section.color %>">
-	<div class="section-name"><%= section.name %></div>
+	<div class="section-name"><%= link_to section.name, edit_admin_section_path(section) %></div>
 </div>
 <% end %>
 

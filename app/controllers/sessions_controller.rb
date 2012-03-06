@@ -1,4 +1,14 @@
+# Controller for User sessions
 class SessionsController < ApplicationController
+  # This action is redirected to after the user authenticates
+  # with Google.
+  #
+  # This action
+  # * creates or finds the User object associated with the authenticated user,
+  # * updates their attributes (such as first name, last name, etc, as provided
+  #   by Google),
+  # * initializes their session,
+  # * and redirects them to the admin panel.
 	def create
 		auth_hash = request.env["omniauth.auth"].to_hash
 		@user = User.find_or_create_by_uid(auth_hash["uid"])
@@ -15,7 +25,10 @@ class SessionsController < ApplicationController
 		session[:user_id] = @user.id
 		redirect_to admin_path
 	end
-
+  
+  # Destroys the current session, effectively logging the current user out of the admin panel.
+  #
+  # Redirects to the public-facing site after the session has been terminated.
 	def destroy
 		session[:user_id] = nil
 		redirect_to root_path

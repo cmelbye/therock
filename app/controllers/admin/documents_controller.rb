@@ -1,10 +1,10 @@
+# Controller that manages Document objects
 class Admin::DocumentsController < ApplicationController
   layout "documents"
   before_filter :login_required
 
 
-  # GET /documents
-  # GET /documents.json
+  # Finds all Document objects that the user has contributed to.
   def index
     @documents = current_user.documents.order("id DESC").all
 
@@ -14,6 +14,7 @@ class Admin::DocumentsController < ApplicationController
     end
   end
 
+  # Finds all Document objects sorted by <tt>id</tt> descending.
   def all
     @documents = Document.order("id DESC").all
   end

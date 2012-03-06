@@ -1,4 +1,9 @@
+# Represents an assignment in the database.
 class Assignment < ActiveRecord::Base
+  # These status constants are used to determine if an assignment
+  # is complete, incomplete, etc.
+  # It's used in AssignmentsHelper#status_label
+  # to show a human-readable representation of the status of the assignment.
 	STATUSES = {:complete => 100, :incomplete => 101}
 
 	validates_presence_of :summary
@@ -8,12 +13,8 @@ class Assignment < ActiveRecord::Base
 
 	belongs_to :assignee, :class_name => "User"
 	belongs_to :assignor, :class_name => "User"
-
-	def assignee_name
-		@assignee_name
-	end
-
-	def assignee_name=(val)
-		@assignee_name = val
-	end
+  
+  # Virtual attribute that facilitates setting the assignee
+  # name in the assignee autocompleter.
+  attr_writer :assignee_name
 end

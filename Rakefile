@@ -20,3 +20,13 @@ end
 
 desc "Start everything."
 multitask :start => ['focus:start_www', 'focus:start_sync']
+
+RDoc::Task.new do |rdoc|
+  rdoc.title    = "Focus API"
+  rdoc.rdoc_dir = 'doc'
+  rdoc.main = "README.rdoc"
+  
+  rdoc.rdoc_files.include('README.rdoc', 'app/', 'lib/')
+
+  rdoc.options << '-f' << 'sdoc'
+end

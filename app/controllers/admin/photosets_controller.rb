@@ -1,3 +1,4 @@
+# Controller for the photoset manager
 class Admin::PhotosetsController < ApplicationController
   layout "photosets"
   before_filter :login_required

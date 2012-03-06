@@ -1,10 +1,10 @@
+# Controller for the Assignment manager.
 class Admin::AssignmentsController < ApplicationController
   layout "assignments"
   before_filter :login_required
 
 
-  # GET /assignments
-  # GET /assignments.json
+  # Finds all Assignment objects that are assigned to the current user.
   def index
     @assignments = Assignment.find_all_by_assignee_id(current_user.id)
 
@@ -14,6 +14,7 @@ class Admin::AssignmentsController < ApplicationController
     end
   end
 
+  # Finds all Assignment objects.
   def all
     @assignments = Assignment.all
 
@@ -23,6 +24,7 @@ class Admin::AssignmentsController < ApplicationController
     end
   end
 
+  # Finds all Assignment objects that are assigned by the current user.
   def by_me
     @assignments = Assignment.find_all_by_assignor_id(current_user.id)
 
@@ -32,8 +34,7 @@ class Admin::AssignmentsController < ApplicationController
     end
   end
 
-  # GET /assignments/1
-  # GET /assignments/1.json
+  # Finds an Assignment as provided by the <tt>params[:id]</tt> parameter.
   def show
     @assignment = Assignment.find(params[:id])
 
@@ -43,8 +44,7 @@ class Admin::AssignmentsController < ApplicationController
     end
   end
 
-  # GET /assignments/new
-  # GET /assignments/new.json
+  # Creates a blank Assignment object.
   def new
     @assignment = Assignment.new
 
@@ -54,13 +54,12 @@ class Admin::AssignmentsController < ApplicationController
     end
   end
 
-  # GET /assignments/1/edit
+  # Finds an Assignment object as determined by the <tt>params[:id]</tt> parameter so that it may be edited.
   def edit
     @assignment = Assignment.find(params[:id])
   end
 
-  # POST /assignments
-  # POST /assignments.json
+  # Creates an Assignment object using the <tt>params[:assignment]</tt> parameter as the object attributes.
   def create
     @assignment = Assignment.new(params[:assignment])
 
@@ -75,8 +74,7 @@ class Admin::AssignmentsController < ApplicationController
     end
   end
 
-  # PUT /assignments/1
-  # PUT /assignments/1.json
+  # Updates an Assignment object with the <tt>params[:assignment]</tt> attributes.
   def update
     @assignment = Assignment.find(params[:id])
 
@@ -91,8 +89,7 @@ class Admin::AssignmentsController < ApplicationController
     end
   end
 
-  # DELETE /assignments/1
-  # DELETE /assignments/1.json
+  # Destroys an Assignment by removing it from the database.
   def destroy
     @assignment = Assignment.find(params[:id])
     @assignment.destroy

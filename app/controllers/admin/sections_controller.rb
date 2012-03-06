@@ -1,3 +1,4 @@
+# Controller for the Section manager.
 class Admin::SectionsController < ApplicationController
   layout "sections"
   before_filter :login_required

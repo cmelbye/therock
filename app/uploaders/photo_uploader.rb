@@ -1,11 +1,12 @@
 # encoding: utf-8
 
+# Uploads photos to Amazon S3.
 class PhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   storage :fog
 
-  # This is a sensible default for uploaders that are meant to be mounted:
+  # Returns the path to where uploads are stored in S3.
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
@@ -30,7 +31,8 @@ class PhotoUploader < CarrierWave::Uploader::Base
   version :thumb do
     process :resize_to_fill => [210,145]
   end
-
+  
+  # Returns an array of extensions that are allowed to be uploaded.
   def extension_white_list
     %w(jpg jpeg gif png)
   end
