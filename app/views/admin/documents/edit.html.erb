@@ -1,21 +1,38 @@
-<div class="row">
-	<div class="span9">
-		<div class="document-edit">
-			<div class="document-edit-name">
-				<%= @document.name %>
-			</div>
-			<div class="document-edit-toolbar" id="<%= @document.secure_id %>-toolbar">
-				<a data-wysihtml5-command="bold" class="btn btn-mini"><strong>Bold</strong></a>
-				<a data-wysihtml5-command="italic" class="btn btn-mini"><em>Italic</em></a>
-			</div>
-			<div class="document-edit-body">
-				<textarea id="<%= @document.secure_id %>" placeholder="Start writing your document here..."><%= @document.body ? @document.body.to_s.html_safe : "&nbsp;".html_safe %></textarea>
+<div class="container">
+	<div class="row">
+		<div class="span8">
+			<div class="document-edit">
+				<div class="document-edit-inner">
+					<div class="document-edit-name">
+						<%= @document.name %>
+					</div>
+					<div class="document-edit-toolbar" id="<%= @document.secure_id %>-toolbar">
+						<div class="btn-group">
+							<a data-wysihtml5-command="bold" class="btn btn-mini"><strong>Bold</strong></a>
+							<a data-wysihtml5-command="italic" class="btn btn-mini"><em>Italic</em></a>
+						</div>
+					</div>
+					<div class="document-edit-body">
+						<textarea id="<%= @document.secure_id %>" placeholder="Start writing your document here..."><%= @document.body ? @document.body.to_s.html_safe : "&nbsp;".html_safe %></textarea>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="span3">
-		<div class="document-back">
-			<%= link_to "&larr; Back to documents", all_admin_documents_path %>
+		<div class="span3">
+			<div class="document-back">
+				<%= link_to "&larr; Back to documents".html_safe, all_admin_documents_path %>
+			</div>
+			<div class="document-sidebar">
+				<div class="document-last-saved">Saved as you type.</div>
+				<h4>Contributors</h4>
+				<ul>
+					<% @document.contributors.each_with_index do |contributor, index| %>
+					<li>
+						<%= contributor.name %><%= " <span class='label'>Creator</span>".html_safe if index == 0 %>
+					</tr>
+					<% end %>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>

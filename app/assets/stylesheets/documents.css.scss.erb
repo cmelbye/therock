@@ -1,0 +1,126 @@
+// Place all the styles related to the documents controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+h2.document-name {
+}
+
+h2.document-name-edit:hover {
+	background-color: lightYellow;
+	cursor: pointer;
+}
+
+h3.document-info {
+	font-weight: normal;
+}
+
+h3.last {
+	margin-bottom: 20px;
+}
+
+.document-toolbar {
+	margin-bottom: 20px;
+}
+
+.tab-pane {
+	display: none;
+}
+
+.tab-pane.active {
+	display: block;
+}
+
+body.documents-controller.edit-action,
+body.documents-controller.show-action,
+body.posts-controller.edit-action,
+body.posts-controller.new-action {
+	background-color: #f8f8f8;
+	/*padding-top: 100px;*/
+}
+
+.editor-header {
+	position: fixed;
+	width: 100%;
+	top: 40px;
+}
+.editor-header .container {
+	width: 750px;
+}
+.editor-document-info {
+	background-color: #fff;
+	border-bottom: 1px solid rgb(229, 229, 229);
+	padding: 10px 0 15px 0;
+}
+.editor-document-info h2 {
+	font-size: 20px;
+	font-weight: normal;
+}
+.editor-document-info .more-info {
+	font-size: 14px;
+	color: #999;
+}
+.editor-toolbar {
+	background-color: rgb(245, 245, 245);
+	padding: 8px 0 4px 0;
+	font-size: 12px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+	margin-top: 0;
+}
+.editor-document-body {
+	width: 620px;
+	padding: 80px;
+	border: 1px solid rgb(202, 202, 202);
+	margin: 0 auto;
+	background-color: #fff;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+	min-height: 800px;
+	margin-bottom: 50px;
+}
+.editor-document-body:focus {
+	outline: none;
+}
+iframe.wysihtml5-sandbox {
+	width: 100%;
+	min-height: 600px;
+}
+.document-edit {
+	.document-edit-inner {
+		border-left: 1px solid #f8cbc3;
+		padding: 40px 0 20px 0;
+	}
+	background-color: #fff;
+	padding: 0 40px;
+	border: 1px solid rgb(202, 202, 202);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	.document-edit-name {
+		font-size: 20px;
+		line-height: 1;
+		font-weight: bold;
+		margin-bottom: 30px;
+		margin-left: 20px;
+	}
+	.document-edit-toolbar {
+		margin-bottom: 20px;
+		margin-left: 20px;
+		.btn {
+			padding: 2px 10px;
+		}
+	}
+}
+.document-sidebar {
+	padding-top: 20px;
+	.document-last-saved {
+		color: #666;
+	}
+	h4 {
+		margin-top: 20px;
+	}
+}
+body.wysihtml5-editor {
+	background: url(<%= asset_path('bluelines.png') %>);
+	padding: 0 20px;
+}
+body.placeholder {
+	color: #666;
+	font-style: italic
+}
