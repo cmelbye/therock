@@ -83,7 +83,7 @@ def parse_user_id(username_string):
   username_string = username_string[1:]
   parts = username_string.split("-")
 
-  if not len(parts) == 2:
+  if not len(parts) >= 2:
     return False
 
   token_key = "user:%s:token" % parts[0]
