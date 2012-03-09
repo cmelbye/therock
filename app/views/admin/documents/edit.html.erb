@@ -32,6 +32,13 @@
 					</tr>
 					<% end %>
 				</ul>
+				<h4>Publish Options</h4>
+				<% if @document.post %>
+					<div class="document-sidebar-section">Published on <%= @document.created_at %>.</div>
+				<% else %>
+					<div class="document-sidebar-section">Not published yet.</div>
+					<div class="document-sidebar-section"><a class="btn btn-small">Publish</a></div>
+				<% end %>
 			</div>
 		</div>
 	</div>
